@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEBSITE REQUESTS + | Premium Web Development & Design Agency</title>
+    <link rel="icon" type="image/png" href="WR%2BSeverIcon.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="text-slate-300 overflow-x-hidden antialiased selection:bg-blue-500/30 selection:text-white">
+
+    <!-- Top Discord Banner -->
+    <div id="top-announcement-banner" class="bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-700 text-white text-xs sm:text-sm font-semibold py-3 px-4 text-center relative z-50 flex items-center justify-center gap-2 shadow-lg">
+        <span class="flex items-center gap-1.5">
+            <span class="inline-block w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+            Collaborate, learn, and grow alongside digital builders:
+        </span>
+        <a href="https://discord.gg/3CdYWtE7K3" target="_blank" class="underline hover:text-blue-100 transition inline-flex items-center gap-1 font-bold">
+            Join the Discord
+            <svg class="w-3.5 h-3.5 inline" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+            </svg>
+        </a>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 w-full z-40 glass-nav">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex items-center space-x-3 group">
+                    <img src="WR%2BSeverIcon.png" alt="Website Requests Plus logo" class="site-logo w-10 h-10 rounded-xl">
+                    <span class="text-md font-bold tracking-widest text-white uppercase">WEBSITE REQUESTS +</span>
+                </div>
+               
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#portal" class="text-slate-400 hover:text-white font-semibold transition duration-200 text-xs uppercase tracking-wider">Submit Request</a>
+                    <a href="#services" class="text-slate-400 hover:text-white font-semibold transition duration-200 text-xs uppercase tracking-wider">What We Build</a>
+                    <a href="#estimator" class="text-slate-400 hover:text-white font-semibold transition duration-200 text-xs uppercase tracking-wider">Cost Estimator</a>
+                    <a href="https://discord.gg/3CdYWtE7K3" target="_blank" class="discord-btn text-white px-5 py-2.5 rounded-full font-bold text-xs uppercase tracking-wider">
+                        Join Workspace
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-slate-400 hover:text-white focus:outline-none p-2 transition">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-[#060b18] border-b border-gray-900/80 p-6 space-y-4 shadow-xl">
+            <a href="#portal" class="block text-slate-300 hover:text-white font-medium text-base transition">Submit Request</a>
+            <a href="#services" class="block text-slate-300 hover:text-white font-medium text-base transition">What We Build</a>
+            <a href="#estimator" class="block text-slate-300 hover:text-white font-medium text-base transition">Cost Estimator</a>
+            <a href="https://discord.gg/3CdYWtE7K3" target="_blank" class="discord-btn text-white text-center block px-5 py-3 rounded-xl font-semibold shadow-md">Join Discord</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative pt-20 pb-20 md:pt-32 md:pb-32 hero-gradient overflow-hidden">
+        <div class="hero-orb hero-orb-1"></div>
+        <div class="hero-orb hero-orb-2"></div>
+        <div class="hero-orb hero-orb-3"></div>
+        <!-- Grid overlay -->
+        <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b08_1px,transparent_1px),linear-gradient(to_bottom,#1e293b08_1px,transparent_1px)] bg-[size:5rem_5rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_80%,transparent_100%)]"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center">
+                <span class="reveal float-badge inline-flex items-center gap-2 px-4 py-1.5 mb-6 text-[11px] font-bold tracking-widest text-blue-400 uppercase bg-blue-950/20 border border-blue-500/15 rounded-full">
+                    <img src="WR%2BSeverIcon.png" alt="" class="w-4 h-4 rounded-sm">
+                    Bespoke digital brand architecture
+                </span>
+                <h1 class="reveal delay-1 text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold text-white mb-6 tracking-tight leading-[0.95]">
+                    Premium sites at <br class="hidden md:block">
+                    <span class="blue-gradient-text">WEBSITE REQUESTS +</span>
+                </h1>
+                <p class="reveal delay-2 max-w-2xl mx-auto text-base sm:text-lg md:text-xl text-slate-400 mb-10 leading-relaxed font-normal">
+                    Tell us what you want built, join our Discord workspace for fast collaboration, or send a request by email. We turn ideas into polished, modern websites.
+                </p>
+                <div class="reveal delay-3 flex flex-col sm:flex-row justify-center items-center gap-4 max-w-md mx-auto sm:max-w-none">
+                    <a href="https://discord.gg/3CdYWtE7K3" target="_blank" class="btn-shine w-full sm:w-auto discord-btn text-white px-8 py-3.5 rounded-xl font-semibold text-sm transition duration-300 text-center uppercase tracking-wider">
+                        Join Discord — Fastest
+                    </a>
+                    <a href="#portal" class="w-full sm:w-auto bg-slate-900/60 border border-slate-800/80 hover:bg-slate-800 hover:border-blue-500/30 text-slate-300 px-8 py-3.5 rounded-xl font-semibold text-sm transition duration-300 text-center uppercase tracking-wider">
+                        Submit a Request
+                    </a>
+                </div>
+            </div>
+           
+            <!-- Dashboard Mockup -->
+            <div class="reveal delay-3 mt-16 md:mt-24 relative mx-auto max-w-5xl rounded-2xl overflow-hidden shadow-2xl border border-slate-900/60 bg-[#070b13]/80 p-2">
+                <div class="flex items-center justify-between px-4 py-2 border-b border-slate-900 bg-[#05080e] text-[11px] text-slate-500">
+                    <div class="flex items-center space-x-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-slate-800 inline-block"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-slate-800 inline-block"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-slate-800 inline-block"></span>
+                    </div>
+                    <span class="font-mono text-slate-400 text-xs">websiterequests.plus</span>
+                    <span class="flex items-center gap-1">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Open for Requests
+                    </span>
+                </div>
+                <div class="relative overflow-hidden aspect-video max-h-[480px]">
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1600&auto=format&fit=crop" alt="Modern website design preview" class="w-full h-full object-cover opacity-75 transition duration-500 hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#030712] via-transparent to-transparent"></div>
+                    <div class="absolute bottom-6 left-6 right-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-[#090e1a]/95 backdrop-blur-md p-5 rounded-2xl border border-slate-800/50 shadow-2xl">
+                        <div class="flex items-center gap-3">
+                            <img src="WR%2BSeverIcon.png" alt="" class="w-8 h-8 rounded-lg">
+                            <div>
+                                <h4 class="text-[10px] text-slate-500 font-extrabold uppercase tracking-widest">What we do best</h4>
+                                <p class="text-sm font-bold text-white">Business sites, stores, portfolios, blogs, and more</p>
+                            </div>
+                        </div>
+                        <a href="#portal" class="bg-blue-600/90 hover:bg-blue-600 text-white text-xs font-semibold px-4 py-2.5 rounded-lg transition tracking-wide uppercase">Start a Request</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 relative border-t border-slate-900/50 bg-[#050810]/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-16 gap-6">
+                <div class="max-w-2xl text-left">
+                    <span class="text-xs font-bold uppercase tracking-widest text-blue-500">WHAT WE BUILD</span>
+                    <h2 class="text-3xl md:text-5xl font-black mt-2 mb-4 tracking-tight text-white">Websites for all kinds of projects.</h2>
+                    <p class="text-slate-400 text-sm md:text-base leading-relaxed">From simple landing pages to full business sites, online stores, blogs, and gaming pages. Tell us what you need and we will build it.</p>
+                </div>
+            </div>
+           
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Service 1 -->
+                <div class="p-8 rounded-2xl premium-card scroll-reveal flex flex-col justify-between">
+                    <div>
+                        <div class="w-11 h-11 bg-blue-950/40 text-blue-400 rounded-xl flex items-center justify-center mb-6 border border-blue-900/30">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" /></svg>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2 text-white">Business Websites</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed">Professional sites for companies, local businesses, and personal brands that need a strong online presence.</p>
+                    </div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="p-8 rounded-2xl premium-card scroll-reveal flex flex-col justify-between">
+                    <div>
+                        <div class="w-11 h-11 bg-blue-950/40 text-blue-400 rounded-xl flex items-center justify-center mb-6 border border-blue-900/30">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2 text-white">E-Commerce & Stores</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed">Online shops and product pages built to look clean, load fast, and work well on phones and desktops.</p>
+                    </div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="p-8 rounded-2xl premium-card scroll-reveal flex flex-col justify-between">
+                    <div>
+                        <div class="w-11 h-11 bg-blue-950/40 text-blue-400 rounded-xl flex items-center justify-center mb-6 border border-blue-900/30">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5" /></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-white">Mobile-Friendly Design</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed">Every site is built to look great on phones, tablets, and desktops so visitors can use it anywhere.</p>
+                    </div>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="p-8 rounded-2xl premium-card scroll-reveal flex flex-col justify-between">
+                    <div>
+                        <div class="w-11 h-11 bg-blue-950/40 text-blue-400 rounded-xl flex items-center justify-center mb-6 border border-blue-900/30">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" /></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-white">Redesigns & Landing Pages</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed">Refresh an old site or launch a focused landing page with modern styling, clear layout, and smooth animations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cost Estimator Section -->
+    <section id="estimator" class="py-24 relative bg-gradient-to-b from-transparent to-[#040812]">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-16">
+                <span class="text-xs font-bold uppercase tracking-widest text-blue-500">SENSIPLE BUDGETS</span>
+                <h2 class="text-3xl md:text-5xl font-black mt-2 mb-4 text-white">Boutique Agency Project Estimator</h2>
+                <p class="text-slate-400 max-w-md mx-auto text-sm">Select your platform scale, drag the page scope, and instantly review our competitive, dynamic rates.</p>
+            </div>
+
+            <div class="bg-[#090e1a] border border-slate-900 rounded-3xl p-6 sm:p-10 shadow-2xl relative scroll-reveal">
+                <!-- Inner grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+                   
+                    <div class="space-y-6 flex flex-col justify-center">
+                        <!-- Project Type -->
+                        <div>
+                            <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2.5">Project Category</label>
+                            <select id="estimator-type" class="w-full bg-[#040810] border border-slate-800 text-white rounded-xl px-4 py-3.5 focus:outline-none focus:border-blue-500 transition cursor-pointer text-xs uppercase tracking-wider font-semibold">
+                                <option value="website-request" data-base="399" data-days="5">Website Request ($399)</option>
+                                <option value="new-project" data-base="449" data-days="5">New Project ($449)</option>
+                                <option value="business" data-base="599" data-days="7">Business Website ($599)</option>
+                                <option value="ecommerce" data-base="999" data-days="10">E-Commerce ($999)</option>
+                                <option value="portfolio" data-base="299" data-days="4">Portfolio ($299)</option>
+                                <option value="blog" data-base="349" data-days="5">Blog ($349)</option>
+                                <option value="gaming" data-base="499" data-days="6">Gaming Website ($499)</option>
+                                <option value="mobile-friendly" data-base="449" data-days="5">Mobile-Friendly Site ($449)</option>
+                                <option value="redesign" data-base="699" data-days="7">Website Redesign ($699)</option>
+                                <option value="landing-page" data-base="399" data-days="4">Landing Page ($399)</option>
+                            </select>
+                        </div>
+
+                        <!-- Effort Level Selection -->
+                        <div>
+                            <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2.5">Effort & Polish level</label>
+                            <select id="estimator-effort" class="w-full bg-[#040810] border border-slate-800 text-white rounded-xl px-4 py-3.5 focus:outline-none focus:border-blue-500 transition cursor-pointer text-xs uppercase tracking-wider font-semibold">
+                                <option value="standard" data-multiplier="1.0" data-extra-days="0">Standard Polish (Solid, Clean Delivery)</option>
+                                <option value="premium" data-multiplier="1.3" data-extra-days="2">High Detail (Bespoke details & custom elements)</option>
+                                <option value="masterpiece" data-multiplier="1.6" data-extra-days="5">Masterpiece Quality (Our absolute highest standard)</option>
+                            </select>
+                        </div>
+
+                        <!-- Number of Pages -->
+                        <div>
+                            <div class="flex justify-between items-center mb-2.5">
+                                <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Page Capacity</label>
+                                <span id="pages-badge" class="text-[11px] bg-blue-950/40 text-blue-400 border border-blue-900/30 px-2.5 py-0.5 rounded-full font-bold">1 Page</span>
+                            </div>
+                            <input id="estimator-pages" type="range" min="1" max="15" value="1" class="w-full h-1.5 bg-[#040810] rounded-lg appearance-none cursor-pointer">
+                        </div>
+
+                        <!-- Custom Features -->
+                        <div>
+                            <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3">Add-On Integrations</label>
+                            <div class="space-y-3.5">
+                                <label class="flex items-center gap-3.5 cursor-pointer group text-xs text-slate-400 hover:text-white transition">
+                                    <input type="checkbox" id="feature-darkmode" data-cost="99" data-days="1" class="rounded border-slate-800 text-blue-600 focus:ring-blue-500/20 bg-[#040810] w-4.5 h-4.5">
+                                    <span class="font-medium">Dark / Light Theme Engine (+$99)</span>
+                                </label>
+                                <label class="flex items-center gap-3.5 cursor-pointer group text-xs text-slate-400 hover:text-white transition">
+                                    <input type="checkbox" id="feature-animations" data-cost="149" data-days="1" class="rounded border-slate-800 text-blue-600 focus:ring-blue-500/20 bg-[#040810] w-4.5 h-4.5">
+                                    <span class="font-medium">GSAP Dynamic Animations (+$149)</span>
+                                </label>
+                                <label class="flex items-center gap-3.5 cursor-pointer group text-xs text-slate-400 hover:text-white transition">
+                                    <input type="checkbox" id="feature-cms" data-cost="249" data-days="2" class="rounded border-slate-800 text-blue-600 focus:ring-blue-500/20 bg-[#040810] w-4.5 h-4.5">
+                                    <span class="font-medium">Headless CMS Integration (+$249)</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Price Estimate Card -->
+                    <div class="bg-[#040810] rounded-2xl p-6 sm:p-8 border border-slate-900 text-center relative overflow-hidden flex flex-col justify-between">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-950/10 to-transparent"></div>
+                        <div class="relative z-10 py-6">
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-slate-500 block mb-1">Estimated Proposal Quote</span>
+                            <div class="text-5xl font-extrabold text-white tracking-tighter mb-2">
+                                $<span id="estimated-price">399</span>
+                            </div>
+                            <div class="inline-flex items-center gap-1.5 bg-blue-950/40 border border-blue-900/30 rounded-full px-3 py-1 mt-3">
+                                <span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
+                                <span class="text-[11px] text-blue-300 font-bold" id="estimated-time">5 Days Target</span>
+                            </div>
+                        </div>
+                       
+                        <div class="relative z-10 pt-6 border-t border-slate-900 mt-6">
+                            <p class="text-xs text-slate-500 leading-relaxed mb-5">Use this estimate as a starting point, then send your request through Discord or email.</p>
+                            <button id="estimator-apply-btn" class="w-full py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl transition duration-200 text-xs uppercase tracking-wider shadow-lg shadow-blue-600/10">
+                                Apply This Configuration
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Client Portal: Interactive Kanban Board -->
+    <section id="portal" class="py-24 bg-[#050810]/50 border-y border-slate-900/60 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-xl mx-auto mb-16 scroll-reveal">
+                <span class="text-xs font-bold uppercase tracking-widest text-blue-500">Get Started</span>
+                <h2 class="text-3xl md:text-5xl font-black mt-2 mb-4 text-white">Submit Your Website Request</h2>
+                <p class="text-slate-400 text-sm">Discord is the fastest way to reach us. You can also send your request by email — just note that email replies may take longer because messages can sit unread.</p>
+            </div>
+
+            <!-- Portal Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+               
+                <!-- Ticket Submission Form -->
+                <div class="lg:col-span-4 bg-[#090e1a]/90 border border-slate-900 p-6 sm:p-8 rounded-2xl flex flex-col justify-between scroll-reveal">
+                    <div>
+                        <h3 class="text-md font-bold text-white mb-2 uppercase tracking-wider flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-blue-500 glow-dot shadow-sm shadow-blue-500/50"></span> Submit Web Request
+                        </h3>
+                        <p class="text-xs text-slate-500 mb-6 leading-relaxed">Fill out your project details, then choose Discord for the quickest response or email if you prefer.</p>
+
+                        <div class="grid grid-cols-2 gap-2 mb-6">
+                            <button type="button" id="method-discord" class="method-toggle method-active border border-slate-800 rounded-xl px-3 py-3 text-left">
+                                <span class="block text-[10px] uppercase tracking-widest text-blue-400 font-bold mb-1">Recommended</span>
+                                <span class="block text-xs font-bold text-white">Discord</span>
+                            </button>
+                            <button type="button" id="method-email" class="method-toggle border border-slate-800 rounded-xl px-3 py-3 text-left">
+                                <span class="block text-[10px] uppercase tracking-widest text-slate-500 font-bold mb-1">Alternative</span>
+                                <span class="block text-xs font-bold text-slate-300">Email</span>
+                            </button>
+                        </div>
+
+                        <div id="email-notice" class="hidden mb-4 rounded-xl border border-amber-500/20 bg-amber-500/10 px-4 py-3 text-[11px] text-amber-100 leading-relaxed">
+                            Email requests are delivered to our inbox, but responses may take longer than Discord since messages can go unread.
+                        </div>
+                       
+                        <form id="request-form" class="space-y-4">
+                            <div>
+                                <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1.5">Your Name</label>
+                                <input type="text" id="ticket-name" name="name" required placeholder="Alex Mercer" class="w-full bg-[#040810] border border-slate-800 focus:border-blue-500 rounded-xl px-4 py-3 text-white text-xs focus:outline-none transition">
+                            </div>
+                            <div id="email-field-wrap" class="hidden">
+                                <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1.5">Your Email</label>
+                                <input type="email" id="ticket-email" name="email" placeholder="you@email.com" class="w-full bg-[#040810] border border-slate-800 focus:border-blue-500 rounded-xl px-4 py-3 text-white text-xs focus:outline-none transition">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1.5">Website Name</label>
+                                <input type="text" id="ticket-title" name="website_name" required placeholder="My Brand Website" class="w-full bg-[#040810] border border-slate-800 focus:border-blue-500 rounded-xl px-4 py-3 text-white text-xs focus:outline-none transition">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1.5">Website Type</label>
+                                <select id="ticket-category" name="website_type" class="w-full bg-[#040810] border border-slate-800 focus:border-blue-500 rounded-xl px-4 py-3 text-white text-xs focus:outline-none transition cursor-pointer font-semibold tracking-wide">
+                                    <option value="Website Request">Website Request</option>
+                                    <option value="New Project">New Project</option>
+                                    <option value="Business Website">Business Website</option>
+                                    <option value="E-Commerce">E-Commerce</option>
+                                    <option value="Portfolio">Portfolio</option>
+                                    <option value="Blog">Blog</option>
+                                    <option value="Gaming Website">Gaming Website</option>
+                                    <option value="Mobile-Friendly">Mobile-Friendly</option>
+                                    <option value="Website Redesign">Website Redesign</option>
+                                    <option value="Landing Page">Landing Page</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold text-[#3b82f6] uppercase tracking-widest mb-1.5">Describe What You Want</label>
+                                <textarea id="ticket-prompt" name="description" required rows="4" placeholder="Tell us the style, pages, colors, features, and anything else we should know..." class="w-full bg-[#040810] border border-slate-800 focus:border-blue-500 rounded-xl px-4 py-3 text-white text-xs focus:outline-none transition resize-none"></textarea>
+                            </div>
+                            <p id="submit-hint" class="text-[11px] text-slate-500 leading-relaxed">Recommended — connect with us instantly in our Discord workspace.</p>
+                            <button type="submit" id="request-submit-btn" class="btn-shine w-full py-3.5 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl transition duration-200 text-xs uppercase tracking-wider shadow-lg shadow-blue-500/15">
+                                Submit & Open Discord
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- What We Build Panel -->
+                <div class="lg:col-span-8 scroll-reveal">
+                    <div class="bg-[#090e1a]/50 border border-slate-900 rounded-2xl p-6 sm:p-8 h-full">
+                        <h3 class="text-md font-bold text-white mb-2 uppercase tracking-wider">Common Website Types</h3>
+                        <p class="text-xs text-slate-500 mb-6 leading-relaxed">These are the most common requests we take on. Not sure which one fits? Choose New Project or Website Request and describe what you want.</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div class="service-type-card rounded-xl px-4 py-3.5"><span class="text-xs font-bold text-white">Website Request</span><p class="text-[11px] text-slate-500 mt-1">General request for a new site or update.</p></div>
+                            <div class="service-type-card rounded-xl px-4 py-3.5"><span class="text-xs font-bold text-white">New Project</span><p class="text-[11px] text-slate-500 mt-1">Starting fresh with a custom idea.</p></div>
+                            <div class="service-type-card rounded-xl px-4 py-3.5"><span class="text-xs font-bold text-white">Business Website</span><p class="text-[11px] text-slate-500 mt-1">Company, brand, or service pages.</p></div>
+                            <div class="service-type-card rounded-xl px-4 py-3.5"><span class="text-xs font-bold text-white">E-Commerce</span><p class="text-[11px] text-slate-500 mt-1">Online store or product showcase.</p></div>
+                            <div class="service-type-card rounded-xl px-4 py-3.5"><span class="text-xs font-bold text-white">Portfolio</span><p class="text-[11px] text-slate-500 mt-1">Showcase work, art, or personal projects.</p></div>
+                            <div class="service-type-card rounded-xl px-4 py-3.5"><span class="text-xs font-bold text-white">Blog</span><p class="text-[11px] text-slate-500 mt-1">Articles, news, or content-focused sites.</p></div>
+                            <div class="service-type-card rounded-xl px-4 py-3.5"><span class="text-xs font-bold text-white">Gaming Website</span><p class="text-[11px] text-slate-500 mt-1">Clans, servers, creators, or game communities.</p></div>
+                            <div class="service-type-card rounded-xl px-4 py-3.5"><span class="text-xs font-bold text-white">Mobile-Friendly</span><p class="text-[11px] text-slate-500 mt-1">Built to look great on phones and tablets.</p></div>
+                            <div class="service-type-card rounded-xl px-4 py-3.5"><span class="text-xs font-bold text-white">Website Redesign</span><p class="text-[11px] text-slate-500 mt-1">Modernize an older or outdated site.</p></div>
+                            <div class="service-type-card rounded-xl px-4 py-3.5"><span class="text-xs font-bold text-white">Landing Page</span><p class="text-[11px] text-slate-500 mt-1">One focused page to promote something.</p></div>
+                        </div>
+                        <div class="mt-6 rounded-xl border border-blue-500/20 bg-blue-950/20 px-4 py-3 text-[11px] text-blue-100 leading-relaxed">
+                            Your request stays private. We do not display client names or past projects publicly on this site.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Banner -->
+    <section id="community" class="py-16 overflow-hidden relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="accent-gradient-bg rounded-[2rem] p-10 md:p-16 relative overflow-hidden text-center text-white shadow-2xl border-b-4 border-blue-900 scroll-reveal">
+                <!-- Decorative background elements -->
+                <div class="absolute -top-12 -left-12 w-64 h-64 bg-white/5 rounded-full blur-2xl"></div>
+                <div class="absolute -bottom-12 -right-12 w-64 h-64 bg-blue-400/10 rounded-full blur-2xl"></div>
+
+                <div class="relative z-10 space-y-6">
+                    <div class="flex justify-center mb-4">
+                        <img src="WR%2BSeverIcon.png" alt="Website Requests Plus logo" class="site-logo w-16 h-16 rounded-2xl border border-white/20 bg-white/10 p-2 backdrop-blur-md shadow-md">
+                    </div>
+                    <h2 class="text-3xl md:text-5xl font-black tracking-tight leading-none">Discord is the best place to start.</h2>
+                    <p class="text-blue-100 text-sm md:text-base max-w-xl mx-auto opacity-90">
+                        Join our workspace to talk with the team, share ideas, and get faster replies. Email works too, but Discord is where we are most active.
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-center items-center gap-4 pt-2 max-w-md mx-auto sm:max-w-none">
+                        <a href="https://discord.gg/3CdYWtE7K3" target="_blank" class="w-full sm:w-auto bg-white text-blue-700 px-8 py-3.5 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-slate-50 transition shadow-lg text-center">
+                            Join Discord Server
+                        </a>
+                        <a href="mailto:websiterequestsplus@gmail.com" class="text-white hover:text-blue-200 text-xs font-bold uppercase tracking-widest underline underline-offset-4 transition py-2">
+                            websiterequestsplus@gmail.com
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-16 border-t border-slate-900 bg-[#02050c]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-10">
+                <div class="flex flex-col items-center md:items-start space-y-4">
+                    <div class="flex items-center space-x-2">
+                        <img src="WR%2BSeverIcon.png" alt="Website Requests Plus logo" class="site-logo w-8 h-8 rounded-lg">
+                        <span class="text-md font-bold tracking-widest text-white">WEBSITE REQUESTS +</span>
+                    </div>
+                    <p class="text-slate-500 text-xs text-center md:text-left max-w-xs leading-relaxed">
+                        Custom interface engineering, high-performance web solutions, and modern website redesigns.
+                    </p>
+                </div>
+               
+                <div class="flex flex-col items-center md:items-end space-y-4">
+                    <div class="flex space-x-6 text-xs uppercase tracking-wider font-semibold">
+                        <a href="https://discord.gg/3CdYWtE7K3" target="_blank" class="text-slate-500 hover:text-white transition">Discord Server</a>
+                    </div>
+                    <p class="text-slate-500 text-xs">
+                        Inquiries: <a href="mailto:websiterequestsplus@gmail.com" class="text-blue-400 hover:text-blue-300 transition ml-1">websiterequestsplus@gmail.com</a>
+                    </p>
+                </div>
+            </div>
+            <div class="mt-12 pt-8 border-t border-slate-900/60 text-center">
+                <p class="text-slate-600 text-[10px] tracking-widest uppercase">© 2026 WEBSITE REQUESTS +. ALL RIGHTS RESERVED.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notification Message Overlay -->
+    <div id="toast-notif" class="fixed bottom-6 right-6 z-50 bg-[#090e1a] border border-blue-500/30 text-white rounded-xl px-5 py-3 text-xs font-semibold shadow-2xl flex items-center gap-2 transform translate-y-12 opacity-0 transition duration-300">
+        <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+        <span id="toast-text"></span>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Simple Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-button');
+        const menu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+
+        btn.addEventListener('click', () => {
+            const isHidden = menu.classList.toggle('hidden');
+            if (!isHidden) {
+                menuIcon.setAttribute('d', 'M6 18L18 6M6 6l12 12');
+            } else {
+                menuIcon.setAttribute('d', 'M4 6h16M4 12h16m-7 6h7');
+            }
+        });
+
+        // Close menu on link click
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+                menuIcon.setAttribute('d', 'M4 6h16M4 12h16m-7 6h7');
+            });
+        });
+
+        // Interactive Cost Estimator Logic
+        const typeSelect = document.getElementById('estimator-type');
+        const effortSelect = document.getElementById('estimator-effort');
+        const pagesSlider = document.getElementById('estimator-pages');
+        const pagesBadge = document.getElementById('pages-badge');
+        const checkDarkMode = document.getElementById('feature-darkmode');
+        const checkAnimations = document.getElementById('feature-animations');
+        const checkCms = document.getElementById('feature-cms');
+       
+        const priceText = document.getElementById('estimated-price');
+        const timeText = document.getElementById('estimated-time');
+        const applyBtn = document.getElementById('estimator-apply-btn');
+
+        function calculateEstimates() {
+            const selectedOpt = typeSelect.options[typeSelect.selectedIndex];
+            const basePrice = parseInt(selectedOpt.getAttribute('data-base'));
+            const baseDays = parseInt(selectedOpt.getAttribute('data-days'));
+           
+            const numPages = parseInt(pagesSlider.value);
+            pagesBadge.textContent = numPages === 1 ? '1 Page' : `${numPages} Pages`;
+           
+            // Scaled cost: Base Price + (Pages beyond 1 * $150 per page)
+            let calculatedPrice = basePrice + ((numPages - 1) * 150);
+            let calculatedDays = baseDays + Math.floor(numPages / 4);
+
+            // Effort multiplier calculations
+            const selectedEffort = effortSelect.options[effortSelect.selectedIndex];
+            const multiplier = parseFloat(selectedEffort.getAttribute('data-multiplier'));
+            const extraDays = parseInt(selectedEffort.getAttribute('data-extra-days'));
+
+            calculatedPrice = Math.round(calculatedPrice * multiplier);
+            calculatedDays += extraDays;
+
+            // Features addon calculations
+            if (checkDarkMode.checked) {
+                calculatedPrice += parseInt(checkDarkMode.getAttribute('data-cost'));
+                calculatedDays += parseInt(checkDarkMode.getAttribute('data-days'));
+            }
+            if (checkAnimations.checked) {
+                calculatedPrice += parseInt(checkAnimations.getAttribute('data-cost'));
+                calculatedDays += parseInt(checkAnimations.getAttribute('data-days'));
+            }
+            if (checkCms.checked) {
+                calculatedPrice += parseInt(checkCms.getAttribute('data-cost'));
+                calculatedDays += parseInt(checkCms.getAttribute('data-days'));
+            }
+
+            // Animate values rendering nicely
+            priceText.textContent = calculatedPrice.toLocaleString();
+            timeText.textContent = `${calculatedDays} Days Target`;
+        }
+
+        // Attach event listeners
+        typeSelect.addEventListener('change', calculateEstimates);
+        effortSelect.addEventListener('change', calculateEstimates);
+        pagesSlider.addEventListener('input', calculateEstimates);
+        checkDarkMode.addEventListener('change', calculateEstimates);
+        checkAnimations.addEventListener('change', calculateEstimates);
+        checkCms.addEventListener('change', calculateEstimates);
+
+        // Prepopulate request form when clicking "Apply This Configuration"
+        applyBtn.addEventListener('click', () => {
+            const selectedOpt = typeSelect.options[typeSelect.selectedIndex];
+            const selectedEffort = effortSelect.options[effortSelect.selectedIndex];
+           
+            const cleanTitle = selectedOpt.textContent.split(' ($')[0];
+            const cleanEffort = selectedEffort.textContent.split(' (')[0];
+            document.getElementById('ticket-category').value = cleanTitle;
+            document.getElementById('ticket-title').value = `${cleanTitle} Site`;
+            document.getElementById('ticket-prompt').value = `I want a ${cleanTitle.toLowerCase()} built at ${cleanEffort.toLowerCase()} quality. Please include modern styling, smooth animations, and a responsive layout.`;
+
+            document.getElementById('portal').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Toast notification system instead of alert()
+        window.showToast = function showToast(text) {
+            const toast = document.getElementById('toast-notif');
+            document.getElementById('toast-text').innerText = text;
+            toast.classList.remove('translate-y-12', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+            setTimeout(() => {
+                toast.classList.add('translate-y-12', 'opacity-0');
+                toast.classList.remove('translate-y-0', 'opacity-100');
+            }, 4000);
+        }
+
+        // --- CLIENT PORTAL REQUEST SUBMISSION CORE ---
+        // handled in contact.js
+
+        // Run Estimator Calculation once on initial page load
+        calculateEstimates();
+    </script>
+    <script src="animations.js"></script>
+    <script src="contact.js"></script>
+</body>
+</html>
