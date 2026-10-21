@@ -5,117 +5,251 @@
     if (reduce) root.classList.add('reduce');
 
     const clamp = (v, min = 0, max = 1) => Math.min(max, Math.max(min, v));
+    const $ = (selector, el = document) => el.querySelector(selector);
+    const $$ = (selector, el = document) => [...el.querySelectorAll(selector)];
 
-    // --- Scroll scenes: each [data-scene] gets --p = 0..1 while its sticky panel is held ---
-    const scenes = [...document.querySelectorAll('[data-scene]')];
+    // ---------------------------------------------------------------------
+    // Scroll scenes. Layout is measured once (load/resize); each frame only
+    // reads scrollY and writes transform/opacity, which phones run on the GPU.
+    // ---------------------------------------------------------------------
+    const factories = {
+        zoom(scene) {
+            const frame = $('[data-zoom-frame]', scene);
+            const intro = $('[data-zoom-intro]', scene);
+            const caption = $('[data-zoom-caption]', scene);
+            return {
+                render(p, s) {
+                    const start = s.small ? 0.72 : 0.6;
+                    const scale = start + (1 - start) * p;
+                    frame.style.transform = `translate3d(0, ${((1 - p) * 0.09 * s.h).toFixed(1)}px, 0) scale(${scale.toFixed(4)})`;
+                    intro.style.opacity = clamp(1 - p * 3).toFixed(3);
+                    intro.style.transform = `translate3d(0, ${(-80 * p).toFixed(1)}px, 0)`;
+                    caption.style.opacity = clamp((p - 0.85) * 7).toFixed(3);
+                },
+            };
+        },
 
-    const story = document.querySelector('[data-story]');
-    const steps = story ? [...story.querySelectorAll('[data-step]')] : [];
-    const screens = story ? [...story.querySelectorAll('[data-screen]')] : [];
-    let storyIndex = 0;
+        story(scene) {
+            const steps = $$('[data-step]', scene);
+            const screens = $$('[data-screen]', scene);
+            const bars = steps.map((step) => $('.story-bar > span', step));
+            let index = 0;
 
-    const hs = document.querySelector('[data-hs]');
-    const hsTrack = hs ? hs.querySelector('.hs-track') : null;
-    const hsCards = hs ? [...hs.querySelectorAll('[data-hs-card]')] : [];
-    const hsCount = hs ? hs.querySelector('[data-hs-count]') : null;
+            if (reduce) {
+                steps.forEach((step) => step.classList.add('is-active'));
+                bars.forEach((bar) => (bar.style.transform = 'scaleX(1)'));
+                return { render() {} };
+            }
 
-    function measureHs() {
-        if (!hsTrack || !hsCards.length) return;
-        const last = hsCards[hsCards.length - 1];
-        const padRight = parseFloat(getComputedStyle(hsTrack).paddingRight) || 0;
-        const shift = Math.max(0, last.offsetLeft + last.offsetWidth + padRight - hsTrack.clientWidth);
-        hs.style.setProperty('--hs-shift', `${shift}px`);
-    }
+            return {
+                render(p) {
+                    const n = steps.length;
+                    bars.forEach((bar, i) => (bar.style.transform = `scaleX(${clamp(p * n - i).toFixed(3)})`));
+                    const next = Math.min(n - 1, Math.floor(p * n));
+                    if (next === index) return;
+                    index = next;
+                    steps.forEach((step, i) => step.classList.toggle('is-active', i === index));
+                    screens.forEach((screen, i) => screen.classList.toggle('is-active', i === index));
+                },
+            };
+        },
 
-    function updateStory(p) {
-        const n = steps.length;
-        const index = Math.min(n - 1, Math.floor(p * n));
-        steps.forEach((step, i) => step.style.setProperty('--sp', clamp(p * n - i).toFixed(3)));
-        if (index === storyIndex) return;
-        storyIndex = index;
-        steps.forEach((step, i) => step.classList.toggle('is-active', i === index));
-        screens.forEach((screen, i) => screen.classList.toggle('is-active', i === index));
-    }
+        sideways(scene) {
+            const track = $('.hs-track', scene);
+            const bar = $('.hs-progress > span', scene);
+            const count = $('[data-hs-count]', scene);
+            const cards = $$('[data-hs-card]', scene);
+            let shift = 0;
+            return {
+                measure() {
+                    const last = cards[cards.length - 1];
+                    const padRight = parseFloat(getComputedStyle(track).paddingRight) || 0;
+                    shift = Math.max(0, last.offsetLeft + last.offsetWidth + padRight - track.clientWidth);
+                },
+                render(p) {
+                    if (reduce) return;
+                    track.style.transform = `translate3d(${(-shift * p).toFixed(1)}px, 0, 0)`;
+                    bar.style.transform = `scaleX(${p.toFixed(4)})`;
+                    if (count) count.textContent = String(Math.round(p * (cards.length - 1)) + 1).padStart(2, '0');
+                },
+            };
+        },
 
-    function updateHs(p) {
-        if (!hsCount) return;
-        const index = Math.round(p * (hsCards.length - 1)) + 1;
-        hsCount.textContent = String(index).padStart(2, '0');
-    }
+        devices(scene) {
+            const devs = $$('.dev', scene).map((el) => ({
+                el,
+                ex: 0,
+                ey: 0,
+                sz: parseFloat(el.style.getPropertyValue('--sz')) || 0,
+            }));
+            return {
+                measure() {
+                    devs.forEach((d) => {
+                        const cs = getComputedStyle(d.el);
+                        d.ex = parseFloat(cs.getPropertyValue('--ex')) || 0;
+                        d.ey = parseFloat(cs.getPropertyValue('--ey')) || 0;
+                    });
+                },
+                render(p) {
+                    const q = 1 - p;
+                    devs.forEach((d) => {
+                        // Own perspective per device: they layer in page order and never intersect
+                        d.el.style.transform =
+                            `translate(-50%, -50%) perspective(1600px) ` +
+                            `translate3d(${(d.ex * p).toFixed(1)}px, ${(d.ey * p).toFixed(1)}px, 0) ` +
+                            `rotateX(${(55 * q).toFixed(2)}deg) rotateZ(${(-35 * q).toFixed(2)}deg) ` +
+                            `translateZ(${(d.sz * q).toFixed(1)}px)`;
+                    });
+                },
+            };
+        },
+
+        reveal(scene) {
+            const blob = $('[data-circle-blob]', scene);
+            const intro = $('[data-circle-intro]', scene);
+            const cta = $('[data-circle-cta]', scene);
+            return {
+                render(p) {
+                    const grow = clamp((p - 0.05) / 0.75);
+                    blob.style.transform = `scale(${grow.toFixed(4)})`;
+                    intro.style.opacity = clamp(1 - p * 2.2).toFixed(3);
+                    intro.style.transform = `scale(${(1 - p * 0.15).toFixed(4)})`;
+                    const show = clamp((p - 0.55) / 0.3);
+                    cta.style.opacity = show.toFixed(3);
+                    cta.style.transform = `translate3d(0, ${((1 - show) * 24).toFixed(1)}px, 0)`;
+                    cta.style.pointerEvents = show > 0.5 ? 'auto' : 'none';
+                },
+            };
+        },
+    };
+
+    const scenes = $$('[data-scene]')
+        .filter((el) => factories[el.id])
+        .map((el) => ({
+            el,
+            sticky: $('.scene-sticky', el),
+            ctrl: factories[el.id](el),
+            top: 0,
+            range: 1,
+            h: 0,
+            small: false,
+            p: -1,
+        }));
 
     // --- Text that lights up word by word ---
-    const lit = document.querySelector('[data-lit]');
-    let litWords = [];
+    const lit = $('[data-lit]');
+    const words = [];
+    let litTop = 0;
+    let litHeight = 0;
     if (lit) {
-        const words = lit.textContent.trim().split(/\s+/);
+        const parts = lit.textContent.trim().split(/\s+/);
         lit.textContent = '';
-        words.forEach((word, i) => {
+        parts.forEach((part, i) => {
             const span = document.createElement('span');
             span.className = 'lit-word';
-            span.textContent = word;
+            span.textContent = part;
             lit.appendChild(span);
-            if (i < words.length - 1) lit.appendChild(document.createTextNode(' '));
+            if (i < parts.length - 1) lit.appendChild(document.createTextNode(' '));
+            words.push({ el: span, o: 0.14 });
         });
-        litWords = [...lit.querySelectorAll('.lit-word')];
     }
 
-    function updateLit(vh) {
-        const r = lit.getBoundingClientRect();
-        if (r.bottom < 0 || r.top > vh) return;
+    function updateLit(y, vh) {
+        const top = litTop - y;
+        if (top > vh || top + litHeight < 0) return;
         // Starts lighting when the paragraph enters the lower screen, done by the middle
-        const p = clamp((vh * 0.85 - r.top) / (vh * 0.4 + r.height));
-        const n = litWords.length;
-        litWords.forEach((word, i) => {
-            word.style.opacity = (0.14 + 0.86 * clamp(p * n - i)).toFixed(3);
+        const p = clamp((vh * 0.85 - top) / (vh * 0.4 + litHeight));
+        const n = words.length;
+        words.forEach((w, i) => {
+            const o = Math.round((0.14 + 0.86 * clamp(p * n - i)) * 50) / 50;
+            if (o === w.o) return;
+            w.o = o;
+            w.el.style.opacity = o;
         });
+    }
+
+    let vh = window.innerHeight;
+
+    function measure() {
+        const y = window.scrollY;
+        vh = window.innerHeight;
+        const small = window.innerWidth < 768;
+        scenes.forEach((s) => {
+            s.top = s.el.getBoundingClientRect().top + y;
+            s.h = s.sticky.offsetHeight;
+            s.range = Math.max(1, s.el.offsetHeight - s.h);
+            s.small = small;
+            if (s.ctrl.measure) s.ctrl.measure(s);
+            s.p = -1;
+        });
+        if (lit) {
+            litTop = lit.getBoundingClientRect().top + y;
+            litHeight = lit.offsetHeight;
+        }
     }
 
     let ticking = false;
-    function update() {
+    function frame() {
         ticking = false;
-        const vh = window.innerHeight;
-        scenes.forEach((scene) => {
-            const r = scene.getBoundingClientRect();
-            if (r.bottom < -vh || r.top > vh * 1.5) return;
-            const range = scene.offsetHeight - vh;
-            const p = range > 0 ? clamp(-r.top / range) : 1;
-            scene.style.setProperty('--p', p.toFixed(4));
-            if (scene === story && !reduce) updateStory(p);
-            if (scene === hs) updateHs(p);
+        const y = window.scrollY;
+        scenes.forEach((s) => {
+            const p = reduce ? 1 : clamp((y - s.top) / s.range);
+            if (p === s.p) return;
+            s.p = p;
+            s.ctrl.render(p, s);
         });
-        if (litWords.length && !reduce) updateLit(vh);
+        if (lit && !reduce) updateLit(y, vh);
     }
 
-    function requestUpdate() {
+    function requestFrame() {
         if (ticking) return;
         ticking = true;
-        requestAnimationFrame(update);
+        requestAnimationFrame(frame);
     }
 
-    if (reduce) {
-        // Show every step at once instead of swapping them on scroll
-        steps.forEach((step) => {
-            step.classList.add('is-active');
-            step.style.setProperty('--sp', '1');
+    let lastWidth = window.innerWidth;
+    let lastHeight = window.innerHeight;
+    function onResize() {
+        // Phone URL bars resize the window while scrolling; only re-measure on real changes
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+        if (w === lastWidth && Math.abs(h - lastHeight) < 120) return;
+        lastWidth = w;
+        lastHeight = h;
+        measure();
+        requestFrame();
+    }
+
+    measure();
+    frame();
+    window.addEventListener('scroll', requestFrame, { passive: true });
+    window.addEventListener('resize', onResize);
+    window.addEventListener('load', () => {
+        measure();
+        frame();
+    });
+    if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(() => {
+            measure();
+            frame();
         });
     }
 
-    measureHs();
-    update();
-    window.addEventListener('scroll', requestUpdate, { passive: true });
-    window.addEventListener('resize', () => {
-        measureHs();
-        requestUpdate();
-    });
-    window.addEventListener('load', () => {
-        measureHs();
-        requestUpdate();
-    });
+    // ---------------------------------------------------------------------
+    // Micro-interactions
+    // ---------------------------------------------------------------------
 
-    // --- Count-up numbers + bar chart ---
-    const countCard = document.querySelector('[data-count-card]');
+    // Hover demos say something different on touch screens
+    if (!canHover) {
+        $$('[data-touch-text]').forEach((el) => {
+            el.innerHTML = el.dataset.touchText;
+        });
+    }
+
+    // Count-up numbers + bar chart
+    const countCard = $('[data-count-card]');
     if (countCard) {
-        const numbers = [...countCard.querySelectorAll('[data-count]')];
+        const numbers = $$('[data-count]', countCard);
         const format = (value, decimals) =>
             value.toLocaleString('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
 
@@ -152,54 +286,77 @@
         io.observe(countCard);
     }
 
-    // Hover demos say something different on touch screens
-    if (!canHover) {
-        document.querySelectorAll('[data-touch-text]').forEach((el) => {
-            el.innerHTML = el.dataset.touchText;
-        });
-    }
-
-    // --- 3D tilt card ---
-    document.querySelectorAll('[data-tilt]').forEach((card) => {
-        if (reduce || !canHover) return;
-        card.addEventListener('pointermove', (e) => {
+    // 3D tilt card: follows the mouse, or a finger dragged across it
+    $$('[data-tilt]').forEach((card) => {
+        if (reduce) return;
+        const apply = (e) => {
             const r = card.getBoundingClientRect();
-            const x = (e.clientX - r.left) / r.width;
-            const y = (e.clientY - r.top) / r.height;
+            const x = clamp((e.clientX - r.left) / r.width);
+            const y = clamp((e.clientY - r.top) / r.height);
             card.style.setProperty('--ry', `${((x - 0.5) * 18).toFixed(2)}deg`);
             card.style.setProperty('--rx', `${((0.5 - y) * 14).toFixed(2)}deg`);
             card.style.setProperty('--mx', `${(x * 100).toFixed(1)}%`);
             card.style.setProperty('--my', `${(y * 100).toFixed(1)}%`);
-        });
-        card.addEventListener('pointerleave', () => {
+            card.classList.add('is-tilting');
+        };
+        const reset = () => {
             card.style.setProperty('--rx', '0deg');
             card.style.setProperty('--ry', '0deg');
+            card.classList.remove('is-tilting');
+        };
+        card.addEventListener('pointerdown', apply);
+        card.addEventListener('pointermove', apply);
+        card.addEventListener('pointerleave', reset);
+        card.addEventListener('pointercancel', reset);
+        card.addEventListener('pointerup', (e) => {
+            if (e.pointerType !== 'mouse') reset();
         });
     });
 
-    // --- Magnetic button ---
-    document.querySelectorAll('[data-magnet-area]').forEach((area) => {
-        const button = area.querySelector('[data-magnet]');
-        if (!button || reduce || !canHover) return;
-        area.addEventListener('pointermove', (e) => {
+    // Magnetic button: pulls toward the mouse or a finger
+    $$('[data-magnet-area]').forEach((area) => {
+        const button = $('[data-magnet]', area);
+        if (!button || reduce) return;
+        const pull = (e) => {
             const r = button.getBoundingClientRect();
             const dx = e.clientX - (r.left + r.width / 2);
             const dy = e.clientY - (r.top + r.height / 2);
-            const reach = 170;
-            const pull = clamp(1 - Math.hypot(dx, dy) / reach);
-            button.style.transform = `translate(${(dx * 0.4 * pull).toFixed(1)}px, ${(dy * 0.4 * pull).toFixed(1)}px)`;
-        });
-        area.addEventListener('pointerleave', () => {
+            const strength = clamp(1 - Math.hypot(dx, dy) / 170);
+            button.style.transform = `translate3d(${(dx * 0.4 * strength).toFixed(1)}px, ${(dy * 0.4 * strength).toFixed(1)}px, 0)`;
+        };
+        const release = () => {
             button.style.transform = '';
+        };
+        area.addEventListener('pointerdown', pull);
+        area.addEventListener('pointermove', pull);
+        area.addEventListener('pointerleave', release);
+        area.addEventListener('pointercancel', release);
+        area.addEventListener('pointerup', (e) => {
+            if (e.pointerType !== 'mouse') release();
         });
     });
 
-    // --- Typing text ---
-    document.querySelectorAll('[data-typing]').forEach((el) => {
-        const words = (el.dataset.words || '').split('|').filter(Boolean);
-        if (!words.length || reduce) return;
+    // Ticker: hover pauses on desktop; click or tap holds it, tap again to play
+    $$('[data-marquee]').forEach((marquee) => {
+        const toggle = () => {
+            const paused = marquee.classList.toggle('is-paused');
+            marquee.setAttribute('aria-pressed', String(paused));
+        };
+        marquee.addEventListener('click', toggle);
+        marquee.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggle();
+            }
+        });
+    });
+
+    // Typing text
+    $$('[data-typing]').forEach((el) => {
+        const list = (el.dataset.words || '').split('|').filter(Boolean);
+        if (!list.length || reduce) return;
         let word = 0;
-        let chars = words[0].length;
+        let chars = list[0].length;
         let deleting = true;
 
         // Hold the full word, delete it, then type the next one
@@ -210,26 +367,26 @@
                 delay = 35;
                 if (chars === 0) {
                     deleting = false;
-                    word = (word + 1) % words.length;
+                    word = (word + 1) % list.length;
                     delay = 300;
                 }
             } else {
                 chars += 1;
                 delay = 70;
-                if (chars === words[word].length) {
+                if (chars === list[word].length) {
                     deleting = true;
                     delay = 1600;
                 }
             }
-            el.textContent = words[word].slice(0, chars);
+            el.textContent = list[word].slice(0, chars);
             setTimeout(step, delay);
         };
         setTimeout(step, 1600);
     });
 
-    // --- Dark mode switch ---
-    document.querySelectorAll('[data-theme-demo]').forEach((demo) => {
-        const toggle = demo.querySelector('[data-theme-toggle]');
+    // Dark mode switch
+    $$('[data-theme-demo]').forEach((demo) => {
+        const toggle = $('[data-theme-toggle]', demo);
         if (!toggle) return;
         toggle.addEventListener('click', () => {
             const dark = demo.dataset.dark !== 'true';

@@ -13,14 +13,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=2">
+    <link rel="stylesheet" href="styles.css?v=3">
     <script>document.documentElement.classList.add('js');</script>
-    <script src="site-config.js?v=2"></script>
+    <script src="site-config.js?v=3"></script>
 </head>
 <body id="top">
 
     <!-- Navigation -->
-    <nav id="site-nav" class="sticky top-0 z-40 border-b border-transparent bg-white/95 backdrop-blur transition-[border-color] duration-200">
+    <nav id="site-nav" class="sticky top-0 z-40 border-b border-transparent bg-white transition-[border-color] duration-200">
         <div class="wrap">
             <div class="flex h-16 items-center justify-between md:h-[72px]">
                 <a href="index.html" class="flex items-center gap-2.5" aria-label="Website Requests + home">
@@ -94,17 +94,21 @@
         </header>
 
         <!-- 01 Scroll zoom -->
-        <section id="zoom" class="scene zoom-scene h-[260vh] bg-ink" data-scene>
+        <section id="zoom" class="scene h-[260vh] bg-ink" data-scene>
             <div class="scene-sticky">
-                <div class="zoom-intro absolute inset-x-0 top-[calc(64px+3vh)] z-10 px-4 text-center text-white md:top-[calc(72px+4vh)]">
+                <div class="absolute inset-x-0 top-[calc(64px+3vh)] z-10 px-4 text-center text-white md:top-[calc(72px+4vh)]" data-zoom-intro>
                     <p class="font-mono text-xs font-medium uppercase tracking-[0.14em] text-brand-sky">01 — Scroll zoom</p>
-                    <h2 class="mx-auto mt-3 max-w-5xl font-display text-[1.6rem] font-semibold leading-tight tracking-tight md:text-[2.6rem]">A first screen that opens up as you scroll.</h2>
+                    <h2 class="mx-auto mt-3 max-w-5xl font-display text-[1.6rem] font-semibold leading-tight tracking-tight md:text-[2.6rem]">A first screen that grows as you scroll.</h2>
                 </div>
 
-                <div class="zoom-frame">
+                <div class="zoom-frame" data-zoom-frame>
                     <div class="h-full">
-                        <!-- Example site: bakery -->
-                        <div class="zoom-pad flex h-full flex-col bg-[#F5ECE0] text-[#3A2316]">
+                        <!-- Example site: bakery. The browser bar sits under our nav once full size. -->
+                        <div class="flex h-full flex-col bg-[#F5ECE0] text-[#3A2316]">
+                            <div class="flex h-16 flex-none items-center gap-2 border-b border-[#3A2316]/10 bg-white/60 px-[6vw] md:h-[72px]" aria-hidden="true">
+                                <span class="h-2.5 w-2.5 rounded-full bg-[#3A2316]/20"></span><span class="h-2.5 w-2.5 rounded-full bg-[#3A2316]/20"></span><span class="h-2.5 w-2.5 rounded-full bg-[#3A2316]/20"></span>
+                                <span class="ml-3 rounded-full bg-[#3A2316]/5 px-4 py-1 text-xs text-[#3A2316]/60">yourbakery.com</span>
+                            </div>
                             <div class="flex items-center justify-between border-b border-[#3A2316]/10 px-[6vw] py-4 md:py-5">
                                 <span class="font-display text-xl font-semibold">yourbakery<span class="text-[#C46A3A]">.</span></span>
                                 <span class="hidden gap-8 text-sm text-[#3A2316]/75 md:flex"><span>Menu</span><span>Visit</span><span>Our story</span></span>
@@ -131,7 +135,7 @@
                     </div>
                 </div>
 
-                <div class="zoom-caption absolute inset-x-0 bottom-5 z-10 flex justify-center px-4">
+                <div class="zoom-caption absolute inset-x-0 bottom-5 z-10 flex justify-center px-4" data-zoom-caption>
                     <p class="rounded-full bg-ink/90 px-4 py-2 text-center text-sm text-white">Good for product launches, big announcements, and landing pages.</p>
                 </div>
             </div>
@@ -451,8 +455,8 @@
                         <div class="tilt-card relative flex h-full min-h-[260px] flex-col justify-between rounded-lg bg-ink p-6 text-white" data-tilt>
                             <p class="font-mono text-xs uppercase tracking-[0.14em] text-white/60">3D tilt</p>
                             <div class="tilt-pop">
-                                <p class="font-display text-3xl font-semibold leading-tight" data-touch-text="Tilts toward<br>your cursor.">Hover over<br>this card.</p>
-                                <p class="mt-2 text-sm text-white/60" data-touch-text="Try it on a computer.">It follows your cursor.</p>
+                                <p class="font-display text-3xl font-semibold leading-tight" data-touch-text="Drag across<br>this card.">Hover over<br>this card.</p>
+                                <p class="mt-2 text-sm text-white/60" data-touch-text="It tilts toward your finger.">It follows your cursor.</p>
                             </div>
                             <span class="tilt-pop absolute right-6 top-6 h-14 w-14 rounded-full bg-brand" aria-hidden="true"></span>
                         </div>
@@ -464,7 +468,7 @@
                         <div class="flex flex-1 items-center justify-center py-6">
                             <a href="index.html#contact" class="magnet flex h-28 w-28 items-center justify-center rounded-full bg-brand text-center text-sm font-semibold leading-tight text-white" data-magnet>Contact<br>sales</a>
                         </div>
-                        <p class="text-sm text-muted" data-touch-text="On a computer, it pulls toward your cursor.">Move your cursor near it.</p>
+                        <p class="text-sm text-muted" data-touch-text="Drag your finger near it.">Move your cursor near it.</p>
                     </div>
 
                     <!-- Typing -->
@@ -493,8 +497,8 @@
                     </div>
 
                     <!-- Ticker -->
-                    <div class="marquee scroll-reveal overflow-hidden rounded-xl border border-line bg-white py-6 md:col-span-3">
-                        <p class="px-6 font-mono text-xs uppercase tracking-[0.14em] text-muted">Ticker — hover to pause</p>
+                    <div class="marquee scroll-reveal overflow-hidden rounded-xl border border-line bg-white py-6 md:col-span-3" role="button" tabindex="0" aria-pressed="false" aria-label="Pause or play the ticker" data-marquee>
+                        <p class="px-6 font-mono text-xs uppercase tracking-[0.14em] text-muted" data-touch-text="Ticker — tap to pause or play">Ticker — hover to pause, click to hold</p>
                         <div class="mt-5 overflow-hidden" aria-hidden="true">
                             <div class="marquee-track font-display text-3xl font-semibold tracking-tight text-ink md:text-5xl">
                                 <span class="flex flex-none items-center gap-8 pr-8">Business websites<span class="text-brand">+</span>Online stores<span class="text-brand">+</span>Portfolios<span class="text-brand">+</span>Blogs<span class="text-brand">+</span>Gaming sites<span class="text-brand">+</span>Landing pages<span class="text-brand">+</span>Redesigns<span class="text-brand">+</span></span>
@@ -510,11 +514,12 @@
         <!-- 07 Shape reveal + call to action -->
         <section id="reveal" class="scene h-[220vh] bg-ink" data-scene>
             <div class="scene-sticky">
-                <div class="circle-intro absolute inset-0 flex flex-col items-center justify-center px-4 text-center text-white">
+                <div class="circle-blob" aria-hidden="true" data-circle-blob></div>
+                <div class="absolute inset-0 flex flex-col items-center justify-center px-4 text-center text-white" data-circle-intro>
                     <p class="font-mono text-xs font-medium uppercase tracking-[0.14em] text-brand-sky">07 — Shape reveal</p>
                     <h2 class="mt-4 font-display text-4xl font-semibold tracking-tight md:text-6xl">Keep scrolling.</h2>
                 </div>
-                <div class="circle-layer absolute inset-0 flex flex-col items-center justify-center bg-brand px-4 text-center text-white">
+                <div class="circle-cta absolute inset-0 flex flex-col items-center justify-center px-4 text-center text-white" data-circle-cta>
                     <h2 class="font-display text-[clamp(2.4rem,6vw,5rem)] font-semibold leading-[1.02] tracking-tight">Want this on your site?</h2>
                     <p class="mt-5 max-w-xl text-lg leading-relaxed text-white/80">Tell us what you want built. Every project gets a custom quote.</p>
                     <div class="mt-9 flex w-full max-w-xs flex-col gap-3 sm:w-auto sm:max-w-none sm:flex-row">
@@ -565,8 +570,8 @@
         </div>
     </footer>
 
-    <script src="nav.js?v=2"></script>
-    <script src="animations.js?v=2"></script>
-    <script src="showcase.js?v=2"></script>
+    <script src="nav.js?v=3"></script>
+    <script src="animations.js?v=3"></script>
+    <script src="showcase.js?v=3"></script>
 </body>
 </html>
