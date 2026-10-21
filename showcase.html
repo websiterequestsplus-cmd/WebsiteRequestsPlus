@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What We Can Do | Website Requests +</title>
+    <meta name="description" content="Live examples of the scroll animation, 3D, and interactive details Website Requests + can build into your site.">
+    <meta name="theme-color" content="#171E2D">
+    <meta property="og:title" content="What We Can Do | Website Requests +">
+    <meta property="og:description" content="Scroll animation, 3D, and interactive details — live examples, built with code.">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script>document.documentElement.classList.add('js');</script>
+    <script src="site-config.js"></script>
+</head>
+<body id="top">
+
+    <!-- Navigation -->
+    <nav id="site-nav" class="sticky top-0 z-40 border-b border-transparent bg-white/95 backdrop-blur transition-[border-color] duration-200">
+        <div class="wrap">
+            <div class="flex h-16 items-center justify-between md:h-[72px]">
+                <a href="index.html" class="flex items-center gap-2.5" aria-label="Website Requests + home">
+                    <img src="assets/logo-mark.png" alt="" width="58" height="30" class="h-[30px] w-auto">
+                    <span class="font-display text-[17px] font-semibold tracking-tight text-ink">Website Requests <span class="text-brand">+</span></span>
+                </a>
+
+                <div class="hidden items-center gap-7 lg:flex">
+                    <a href="index.html#services" class="nav-link">Services</a>
+                    <a href="showcase.html" class="nav-link text-ink" aria-current="page">What we can do</a>
+                    <a href="index.html#process" class="nav-link">Process</a>
+                    <a href="index.html#pricing" class="nav-link">Pricing</a>
+                    <a href="index.html#faq" class="nav-link">FAQ</a>
+                </div>
+
+                <div class="hidden items-center gap-5 lg:flex">
+                    <a href="https://discord.gg/3CdYWtE7K3" target="_blank" rel="noopener" class="nav-link discord-only">Discord</a>
+                    <a href="index.html#contact" class="btn btn-dark py-2.5">Contact sales</a>
+                </div>
+
+                <button id="mobile-menu-button" type="button" class="-mr-2 p-2 text-ink lg:hidden" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                        <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M4 12h16M4 17h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden border-t border-line bg-white lg:hidden">
+            <div class="wrap flex flex-col py-3">
+                <a href="index.html#services" class="border-b border-line py-3.5 text-base font-medium text-ink">Services</a>
+                <a href="showcase.html" class="border-b border-line py-3.5 text-base font-medium text-brand" aria-current="page">What we can do</a>
+                <a href="index.html#process" class="border-b border-line py-3.5 text-base font-medium text-ink">Process</a>
+                <a href="index.html#pricing" class="border-b border-line py-3.5 text-base font-medium text-ink">Pricing</a>
+                <a href="index.html#faq" class="border-b border-line py-3.5 text-base font-medium text-ink">FAQ</a>
+                <a href="https://discord.gg/3CdYWtE7K3" target="_blank" rel="noopener" class="discord-only py-3.5 text-base font-medium text-ink">Discord</a>
+                <a href="index.html#contact" class="btn btn-dark mt-2 mb-2">Contact sales</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+
+        <!-- Hero -->
+        <header class="relative flex min-h-[calc(100svh-64px)] flex-col justify-center overflow-hidden bg-ink text-white md:min-h-[calc(100svh-72px)]">
+            <div class="wrap pb-32 pt-16 md:pt-20">
+                <p class="fade-up font-mono text-xs font-medium uppercase tracking-[0.14em] text-brand-sky" style="--d: 0.1s">What we can do</p>
+                <h1 class="mt-6 font-display text-[clamp(3.2rem,10vw,8.5rem)] font-semibold leading-[0.92] tracking-tight">
+                    <span class="hw"><span style="--i: 0">Websites</span></span>
+                    <span class="hw"><span style="--i: 1">that</span></span><br>
+                    <span class="hw"><span style="--i: 2" class="text-brand-sky">move.</span></span>
+                </h1>
+                <p class="fade-up mt-8 max-w-xl text-lg leading-relaxed text-white/70" style="--d: 0.7s">
+                    Scroll animation, 3D, and interactive details — the kind of motion you see on big product sites like Apple and Stripe. Everything on this page is a live example built with code. No videos.
+                </p>
+                <ol class="fade-up mt-10 flex max-w-3xl flex-wrap gap-2" style="--d: 0.9s" aria-label="Examples on this page">
+                    <li><a href="#zoom" class="inline-flex rounded-full border border-white/15 px-3.5 py-1.5 text-sm text-white/80 transition-colors hover:border-white/50 hover:text-white"><span class="mr-2 font-mono text-brand-sky">01</span>Scroll zoom</a></li>
+                    <li><a href="#text" class="inline-flex rounded-full border border-white/15 px-3.5 py-1.5 text-sm text-white/80 transition-colors hover:border-white/50 hover:text-white"><span class="mr-2 font-mono text-brand-sky">02</span>Text reveal</a></li>
+                    <li><a href="#story" class="inline-flex rounded-full border border-white/15 px-3.5 py-1.5 text-sm text-white/80 transition-colors hover:border-white/50 hover:text-white"><span class="mr-2 font-mono text-brand-sky">03</span>Sticky story</a></li>
+                    <li><a href="#sideways" class="inline-flex rounded-full border border-white/15 px-3.5 py-1.5 text-sm text-white/80 transition-colors hover:border-white/50 hover:text-white"><span class="mr-2 font-mono text-brand-sky">04</span>Side-scroll gallery</a></li>
+                    <li><a href="#devices" class="inline-flex rounded-full border border-white/15 px-3.5 py-1.5 text-sm text-white/80 transition-colors hover:border-white/50 hover:text-white"><span class="mr-2 font-mono text-brand-sky">05</span>3D devices</a></li>
+                    <li><a href="#details" class="inline-flex rounded-full border border-white/15 px-3.5 py-1.5 text-sm text-white/80 transition-colors hover:border-white/50 hover:text-white"><span class="mr-2 font-mono text-brand-sky">06</span>Micro-interactions</a></li>
+                    <li><a href="#reveal" class="inline-flex rounded-full border border-white/15 px-3.5 py-1.5 text-sm text-white/80 transition-colors hover:border-white/50 hover:text-white"><span class="mr-2 font-mono text-brand-sky">07</span>Shape reveal</a></li>
+                </ol>
+            </div>
+            <div class="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-3 font-mono text-[11px] uppercase tracking-[0.2em] text-white/50" aria-hidden="true">
+                <span>Scroll</span>
+                <span class="scroll-line"></span>
+            </div>
+        </header>
+
+        <!-- 01 Scroll zoom -->
+        <section id="zoom" class="scene zoom-scene h-[260vh] bg-ink" data-scene>
+            <div class="scene-sticky">
+                <div class="zoom-intro absolute inset-x-0 top-[calc(64px+3vh)] z-10 px-4 text-center text-white md:top-[calc(72px+4vh)]">
+                    <p class="font-mono text-xs font-medium uppercase tracking-[0.14em] text-brand-sky">01 — Scroll zoom</p>
+                    <h2 class="mx-auto mt-3 max-w-5xl font-display text-[1.6rem] font-semibold leading-tight tracking-tight md:text-[2.6rem]">A first screen that opens up as you scroll.</h2>
+                </div>
+
+                <div class="zoom-frame">
+                    <div class="h-full">
+                        <!-- Example site: bakery -->
+                        <div class="zoom-pad flex h-full flex-col bg-[#F5ECE0] text-[#3A2316]">
+                            <div class="flex items-center justify-between border-b border-[#3A2316]/10 px-[6vw] py-4 md:py-5">
+                                <span class="font-display text-xl font-semibold">yourbakery<span class="text-[#C46A3A]">.</span></span>
+                                <span class="hidden gap-8 text-sm text-[#3A2316]/75 md:flex"><span>Menu</span><span>Visit</span><span>Our story</span></span>
+                                <span class="rounded-full bg-[#3A2316] px-4 py-2 text-xs font-semibold text-[#F5ECE0] md:text-sm">Order ahead</span>
+                            </div>
+                            <div class="grid flex-1 content-center items-center gap-6 px-[6vw] py-6 md:grid-cols-2 md:gap-10">
+                                <div>
+                                    <p class="font-mono text-[11px] uppercase tracking-[0.16em] text-[#C46A3A] md:text-xs">Baked fresh at 6 a.m.</p>
+                                    <p class="mt-3 font-display text-[clamp(2.4rem,5.6vw,5.4rem)] font-semibold leading-[0.95] tracking-tight md:mt-4">Bread worth<br>waking up for.</p>
+                                    <p class="mt-4 max-w-md text-[15px] leading-relaxed text-[#3A2316]/70 md:mt-5 md:text-lg">Sourdough, pastries, and coffee. Order online and skip the line.</p>
+                                    <div class="mt-6 flex gap-3 md:mt-7">
+                                        <span class="rounded-full bg-[#C46A3A] px-5 py-3 text-sm font-semibold text-white">See the menu</span>
+                                        <span class="rounded-full border border-[#3A2316]/25 px-5 py-3 text-sm font-semibold">Find us</span>
+                                    </div>
+                                </div>
+                                <div class="relative mx-auto aspect-[5/3] w-full max-w-[520px] md:aspect-square" aria-hidden="true">
+                                    <div class="absolute inset-y-[4%] left-1/2 aspect-square -translate-x-1/2 rounded-full bg-[#E5B78C]"></div>
+                                    <div class="loaf loaf-scored" style="left: 12%; top: 26%; width: 66%; height: 40%; transform: rotate(-14deg)"></div>
+                                    <div class="loaf" style="left: 60%; top: 60%; width: 26%; height: 25%"></div>
+                                    <div class="loaf" style="left: 20%; top: 66%; width: 19%; height: 18%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="zoom-caption absolute inset-x-0 bottom-5 z-10 flex justify-center px-4">
+                    <p class="rounded-full bg-ink/90 px-4 py-2 text-center text-sm text-white">Good for product launches, big announcements, and landing pages.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 02 Text reveal -->
+        <section id="text" class="bg-white py-28 md:py-44">
+            <div class="wrap">
+                <p class="eyebrow">02 — Text reveal</p>
+                <p data-lit class="mt-8 max-w-5xl font-display text-[clamp(1.9rem,4.4vw,3.7rem)] font-semibold leading-[1.15] tracking-tight text-ink">Words can light up as you scroll. People read at the speed they scroll, so your message lands one idea at a time — and nobody skims past the part that matters.</p>
+                <p class="mt-10 text-muted">Good for mission statements, about pages, and big claims.</p>
+            </div>
+        </section>
+
+        <!-- 03 Sticky story -->
+        <section id="story" class="scene h-[400vh] bg-mist" data-scene data-story>
+            <div class="scene-sticky">
+                <div class="wrap grid h-full content-center items-center gap-5 pt-16 md:pt-[72px] lg:grid-cols-2 lg:gap-16">
+                    <div class="order-2 lg:order-1">
+                        <p class="eyebrow">03 — Sticky story</p>
+                        <h2 class="mt-3 font-display text-2xl font-semibold leading-tight tracking-tight text-ink md:text-[2.6rem]">The picture stays put. The story moves.</h2>
+                        <ol class="mt-5 space-y-6 md:mt-10">
+                            <li class="story-step is-active" data-step>
+                                <div class="story-bar h-0.5 bg-line"><span></span></div>
+                                <div class="mt-4 flex gap-4">
+                                    <span class="pt-1 font-mono text-xs text-brand">01</span>
+                                    <div><p class="font-display text-lg font-semibold text-ink">Grab attention</p><p class="mt-1 text-[15px] leading-relaxed text-muted">A bold first screen that says what you do.</p></div>
+                                </div>
+                            </li>
+                            <li class="story-step" data-step>
+                                <div class="story-bar h-0.5 bg-line"><span></span></div>
+                                <div class="mt-4 flex gap-4">
+                                    <span class="pt-1 font-mono text-xs text-brand">02</span>
+                                    <div><p class="font-display text-lg font-semibold text-ink">Show what you offer</p><p class="mt-1 text-[15px] leading-relaxed text-muted">Clear sections that people can scan in seconds.</p></div>
+                                </div>
+                            </li>
+                            <li class="story-step" data-step>
+                                <div class="story-bar h-0.5 bg-line"><span></span></div>
+                                <div class="mt-4 flex gap-4">
+                                    <span class="pt-1 font-mono text-xs text-brand">03</span>
+                                    <div><p class="font-display text-lg font-semibold text-ink">Build trust</p><p class="mt-1 text-[15px] leading-relaxed text-muted">Reviews and details that answer questions before they're asked.</p></div>
+                                </div>
+                            </li>
+                            <li class="story-step" data-step>
+                                <div class="story-bar h-0.5 bg-line"><span></span></div>
+                                <div class="mt-4 flex gap-4">
+                                    <span class="pt-1 font-mono text-xs text-brand">04</span>
+                                    <div><p class="font-display text-lg font-semibold text-ink">Make it easy to act</p><p class="mt-1 text-[15px] leading-relaxed text-muted">One clear button to book, buy, or get in touch.</p></div>
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
+
+                    <div class="order-1 flex justify-center lg:order-2">
+                        <div class="relative aspect-[9/19] h-[44svh] max-h-[400px] rounded-[2.4rem] border-[9px] border-ink bg-ink shadow-[0_40px_80px_-40px_rgba(23,30,45,0.55)] lg:h-[min(600px,calc(100svh-150px))] lg:max-h-none" aria-label="Example phone screens">
+                            <div class="mock absolute inset-0 overflow-hidden rounded-[1.8rem] bg-white">
+                                <div class="absolute left-1/2 top-[1.2%] z-20 h-[3.2%] w-[30%] -translate-x-1/2 rounded-full bg-ink"></div>
+
+                                <!-- Screen 1: hero -->
+                                <div class="story-screen is-active" data-screen>
+                                    <div class="mock-body flex h-full flex-col bg-[#1E3A2F] px-[7%] pb-[8%] pt-[16%] text-[#F3EBDD]" style="font-size: 4.6cqw">
+                                        <div class="flex items-center justify-between"><span class="font-display text-[1.25em] font-semibold">yourstudio</span><span class="flex flex-col gap-[0.25em]"><span class="block h-[0.12em] w-[1.3em] bg-current"></span><span class="block h-[0.12em] w-[1.3em] bg-current"></span></span></div>
+                                        <div class="relative mt-[12%] aspect-square w-full">
+                                            <div class="absolute inset-[8%] rounded-full bg-[#E8B25A]"></div>
+                                            <div class="absolute inset-x-0 bottom-0 h-[42%] rounded-t-[40%] bg-[#2E5644]"></div>
+                                            <div class="absolute bottom-0 left-[18%] right-[18%] h-[26%] rounded-t-[50%] bg-[#3F6E57]"></div>
+                                        </div>
+                                        <p class="mt-[10%] font-display text-[2.5em] font-semibold leading-[0.95]">Move better, every day.</p>
+                                        <p class="mt-[0.6em] text-[0.95em] opacity-70">Small classes. Real coaching.</p>
+                                        <span class="mt-auto rounded-full bg-[#E8B25A] py-[0.75em] text-center text-[1em] font-semibold text-[#1E3A2F]">Book a class</span>
+                                    </div>
+                                </div>
+
+                                <!-- Screen 2: classes -->
+                                <div class="story-screen" data-screen>
+                                    <div class="mock-body flex h-full flex-col bg-white px-[7%] pb-[8%] pt-[16%] text-ink" style="font-size: 4.6cqw">
+                                        <p class="font-mono text-[0.75em] uppercase tracking-[0.14em] text-[#2E5644]">This week</p>
+                                        <p class="mt-[0.3em] font-display text-[1.9em] font-semibold leading-tight">Pick a class</p>
+                                        <div class="mt-[8%] space-y-[0.6em]">
+                                            <div class="flex items-center justify-between rounded-[0.8em] bg-[#EEF3EF] p-[0.8em]"><div><p class="font-semibold">Morning flow</p><p class="text-[0.8em] opacity-60">Mon · 7:00</p></div><span class="rounded-full bg-[#1E3A2F] px-[0.7em] py-[0.25em] text-[0.75em] text-white">Book</span></div>
+                                            <div class="flex items-center justify-between rounded-[0.8em] bg-[#FBF1E1] p-[0.8em]"><div><p class="font-semibold">Strength</p><p class="text-[0.8em] opacity-60">Tue · 12:15</p></div><span class="rounded-full bg-[#1E3A2F] px-[0.7em] py-[0.25em] text-[0.75em] text-white">Book</span></div>
+                                            <div class="flex items-center justify-between rounded-[0.8em] bg-[#EEF3EF] p-[0.8em]"><div><p class="font-semibold">Slow stretch</p><p class="text-[0.8em] opacity-60">Wed · 18:30</p></div><span class="rounded-full bg-[#1E3A2F] px-[0.7em] py-[0.25em] text-[0.75em] text-white">Book</span></div>
+                                            <div class="flex items-center justify-between rounded-[0.8em] bg-[#FBF1E1] p-[0.8em]"><div><p class="font-semibold">Breathwork</p><p class="text-[0.8em] opacity-60">Thu · 20:00</p></div><span class="rounded-full border border-[#1E3A2F]/30 px-[0.7em] py-[0.25em] text-[0.75em]">Full</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Screen 3: reviews -->
+                                <div class="story-screen" data-screen>
+                                    <div class="mock-body flex h-full flex-col bg-[#F3EBDD] px-[7%] pb-[8%] pt-[16%] text-[#1E3A2F]" style="font-size: 4.6cqw">
+                                        <p class="font-mono text-[0.75em] uppercase tracking-[0.14em] opacity-70">Reviews</p>
+                                        <p class="mt-[0.3em] font-display text-[1.9em] font-semibold leading-tight">What people say</p>
+                                        <div class="mt-[8%] space-y-[0.7em]">
+                                            <div class="rounded-[0.8em] bg-white p-[0.9em]"><p class="text-[#E8A33A]">★★★★★</p><p class="mt-[0.3em] text-[0.9em] leading-snug">“Your happiest customer's words go here.”</p></div>
+                                            <div class="rounded-[0.8em] bg-white p-[0.9em]"><p class="text-[#E8A33A]">★★★★★</p><p class="mt-[0.3em] text-[0.9em] leading-snug">“A short quote that answers a doubt.”</p></div>
+                                            <div class="rounded-[0.8em] bg-white p-[0.9em]"><p class="text-[#E8A33A]">★★★★★</p><p class="mt-[0.3em] text-[0.9em] leading-snug">“Real words from real visitors.”</p></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Screen 4: book -->
+                                <div class="story-screen" data-screen>
+                                    <div class="mock-body flex h-full flex-col bg-white px-[7%] pb-[8%] pt-[16%] text-ink" style="font-size: 4.6cqw">
+                                        <p class="font-mono text-[0.75em] uppercase tracking-[0.14em] text-[#2E5644]">Book</p>
+                                        <p class="mt-[0.3em] font-display text-[1.9em] font-semibold leading-tight">Save your spot</p>
+                                        <div class="mt-[8%] space-y-[0.7em] text-[0.9em]">
+                                            <div><p class="opacity-60">Name</p><div class="mt-[0.3em] rounded-[0.6em] border border-line px-[0.8em] py-[0.6em]">Your name</div></div>
+                                            <div><p class="opacity-60">Class</p><div class="mt-[0.3em] rounded-[0.6em] border border-line px-[0.8em] py-[0.6em]">Morning flow</div></div>
+                                            <div><p class="opacity-60">Day</p><div class="mt-[0.3em] grid grid-cols-4 gap-[0.4em] text-center"><span class="rounded-[0.5em] bg-[#1E3A2F] py-[0.5em] text-white">Mon</span><span class="rounded-[0.5em] border border-line py-[0.5em]">Wed</span><span class="rounded-[0.5em] border border-line py-[0.5em]">Fri</span><span class="rounded-[0.5em] border border-line py-[0.5em]">Sat</span></div></div>
+                                        </div>
+                                        <span class="mt-auto rounded-full bg-[#1E3A2F] py-[0.75em] text-center font-semibold text-white">Book now</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 04 Side-scroll gallery -->
+        <section id="sideways" class="scene h-[320vh] bg-ink text-white" data-scene data-hs>
+            <div class="scene-sticky flex flex-col justify-center pt-16 md:pt-[72px]">
+                <div class="wrap flex w-full items-end justify-between gap-6">
+                    <div>
+                        <p class="font-mono text-xs font-medium uppercase tracking-[0.14em] text-brand-sky">04 — Side-scroll gallery</p>
+                        <h2 class="mt-3 font-display text-2xl font-semibold leading-tight tracking-tight md:text-[2.6rem]">Scroll down. Move sideways.</h2>
+                    </div>
+                    <p class="hidden font-mono text-sm text-white/60 md:block"><span data-hs-count>01</span> / 05</p>
+                </div>
+
+                <div class="hs-viewport mt-8 md:mt-12">
+                    <div class="hs-track gap-5 md:gap-8" style="display: flex; padding-left: max(1rem, calc((100vw - 72rem) / 2 + 2rem)); padding-right: max(1rem, calc((100vw - 72rem) / 2 + 2rem))">
+
+                        <article class="w-[80vw] flex-none sm:w-[58vw] lg:w-[min(640px,50vw)]" data-hs-card>
+                            <div class="mock aspect-[16/10] overflow-hidden rounded-xl bg-white">
+                                <div class="mock-body flex h-full flex-col bg-[#EEF1EA] text-[#22352A]" style="font-size: 2.2cqw">
+                                    <div class="flex items-center gap-[0.4em] bg-white/70 px-[1em] py-[0.6em]"><span class="h-[0.6em] w-[0.6em] rounded-full bg-[#22352A]/20"></span><span class="h-[0.6em] w-[0.6em] rounded-full bg-[#22352A]/20"></span><span class="h-[0.6em] w-[0.6em] rounded-full bg-[#22352A]/20"></span><span class="ml-[1em] rounded-full bg-[#22352A]/5 px-[1em] py-[0.15em] text-[0.8em] opacity-60">yourstore.com</span></div>
+                                    <div class="flex items-center justify-between px-[2em] py-[1em]"><span class="font-display text-[1.4em] font-semibold">yourstore</span><span class="flex gap-[1.6em] text-[0.95em] opacity-70"><span>Shop</span><span>About</span><span>Cart (2)</span></span></div>
+                                    <p class="px-[2em] font-display text-[2.6em] font-semibold leading-none">Plants for every room.</p>
+                                    <div class="mt-auto grid grid-cols-3 gap-[1em] p-[2em] pt-[1.4em]">
+                                        <div class="rounded-[0.8em] bg-white p-[0.7em]"><div class="relative aspect-[4/3] overflow-hidden rounded-[0.6em] bg-[#DCE5D5]"><span class="absolute bottom-[38%] left-[30%] h-[44%] w-[22%] -rotate-[25deg] rounded-[50%] bg-[#4E7A57]"></span><span class="absolute bottom-[38%] right-[30%] h-[50%] w-[22%] rotate-[20deg] rounded-[50%] bg-[#5E8C64]"></span><span class="absolute bottom-[8%] left-1/2 h-[34%] w-[40%] -translate-x-1/2 bg-[#C9744A] [clip-path:polygon(0_0,100%_0,85%_100%,15%_100%)]"></span></div><p class="mt-[0.5em] font-semibold">Fern</p><p class="text-[0.8em] opacity-60">Add to cart</p></div>
+                                        <div class="rounded-[0.8em] bg-white p-[0.7em]"><div class="relative aspect-[4/3] overflow-hidden rounded-[0.6em] bg-[#F1E6D6]"><span class="absolute bottom-[38%] left-1/2 h-[52%] w-[26%] -translate-x-1/2 rounded-[50%] bg-[#3F6E57]"></span><span class="absolute bottom-[8%] left-1/2 h-[34%] w-[40%] -translate-x-1/2 bg-[#E9DCC8] [clip-path:polygon(0_0,100%_0,85%_100%,15%_100%)]"></span></div><p class="mt-[0.5em] font-semibold">Cactus</p><p class="text-[0.8em] opacity-60">Add to cart</p></div>
+                                        <div class="rounded-[0.8em] bg-white p-[0.7em]"><div class="relative aspect-[4/3] overflow-hidden rounded-[0.6em] bg-[#DCE5D5]"><span class="absolute bottom-[38%] left-[34%] h-[36%] w-[18%] -rotate-[35deg] rounded-[50%] bg-[#6E9A6B]"></span><span class="absolute bottom-[38%] left-1/2 h-[46%] w-[18%] -translate-x-1/2 rounded-[50%] bg-[#4E7A57]"></span><span class="absolute bottom-[38%] right-[34%] h-[36%] w-[18%] rotate-[35deg] rounded-[50%] bg-[#6E9A6B]"></span><span class="absolute bottom-[8%] left-1/2 h-[34%] w-[40%] -translate-x-1/2 bg-[#22352A] [clip-path:polygon(0_0,100%_0,85%_100%,15%_100%)]"></span></div><p class="mt-[0.5em] font-semibold">Palm</p><p class="text-[0.8em] opacity-60">Add to cart</p></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="mt-4 font-display text-lg font-semibold">Online store</p>
+                            <p class="mt-1 text-sm text-white/60">Product grids, carts, and checkout pages.</p>
+                        </article>
+
+                        <article class="w-[80vw] flex-none sm:w-[58vw] lg:w-[min(640px,50vw)]" data-hs-card>
+                            <div class="mock aspect-[16/10] overflow-hidden rounded-xl bg-white">
+                                <div class="mock-body flex h-full flex-col bg-white text-[#111]" style="font-size: 2.2cqw">
+                                    <div class="flex items-center gap-[0.4em] bg-[#F4F4F4] px-[1em] py-[0.6em]"><span class="h-[0.6em] w-[0.6em] rounded-full bg-black/15"></span><span class="h-[0.6em] w-[0.6em] rounded-full bg-black/15"></span><span class="h-[0.6em] w-[0.6em] rounded-full bg-black/15"></span><span class="ml-[1em] rounded-full bg-black/5 px-[1em] py-[0.15em] text-[0.8em] opacity-60">yourname.com</span></div>
+                                    <div class="flex items-center justify-between px-[2em] py-[1em] text-[0.95em]"><span class="font-semibold">Your Name</span><span class="flex gap-[1.6em] opacity-60"><span>Work</span><span>About</span><span>Contact</span></span></div>
+                                    <p class="px-[2em] font-display text-[3.1em] font-semibold leading-[0.95] tracking-tight">Designer &amp;<br>photographer.</p>
+                                    <div class="mt-auto grid grid-cols-4 gap-[0.8em] p-[2em] pt-[1.4em]">
+                                        <div><div class="aspect-[3/4] rounded-[0.4em] bg-[#E9E4DC]"></div><p class="mt-[0.4em] text-[0.8em] opacity-60">Brand</p></div>
+                                        <div><div class="aspect-[3/4] rounded-[0.4em] bg-[#1F1F1F]"></div><p class="mt-[0.4em] text-[0.8em] opacity-60">Editorial</p></div>
+                                        <div><div class="aspect-[3/4] rounded-[0.4em] bg-[#C8D3DC]"></div><p class="mt-[0.4em] text-[0.8em] opacity-60">Portraits</p></div>
+                                        <div><div class="aspect-[3/4] rounded-[0.4em] bg-[#E07A5F]"></div><p class="mt-[0.4em] text-[0.8em] opacity-60">Packaging</p></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="mt-4 font-display text-lg font-semibold">Portfolio</p>
+                            <p class="mt-1 text-sm text-white/60">Big type, clean grids, your work up front.</p>
+                        </article>
+
+                        <article class="w-[80vw] flex-none sm:w-[58vw] lg:w-[min(640px,50vw)]" data-hs-card>
+                            <div class="mock aspect-[16/10] overflow-hidden rounded-xl bg-white">
+                                <div class="mock-body flex h-full flex-col bg-[#FAF6EE] text-[#2A2118]" style="font-size: 2.2cqw">
+                                    <div class="flex items-center gap-[0.4em] bg-white/70 px-[1em] py-[0.6em]"><span class="h-[0.6em] w-[0.6em] rounded-full bg-black/15"></span><span class="h-[0.6em] w-[0.6em] rounded-full bg-black/15"></span><span class="h-[0.6em] w-[0.6em] rounded-full bg-black/15"></span><span class="ml-[1em] rounded-full bg-black/5 px-[1em] py-[0.15em] text-[0.8em] opacity-60">yourblog.com</span></div>
+                                    <div class="border-b border-[#2A2118]/15 px-[2em] py-[1em] text-center"><p class="font-display text-[2em] font-semibold tracking-tight">The Notebook</p><p class="text-[0.75em] uppercase tracking-[0.2em] opacity-50">Stories · Guides · News</p></div>
+                                    <div class="grid flex-1 grid-cols-[1.3fr_1fr] gap-[1.4em] p-[2em] pt-[1.4em]">
+                                        <div class="flex flex-col"><div class="flex-1 rounded-[0.5em] bg-[#D9C3A5]"></div><p class="mt-[0.6em] font-display text-[1.4em] font-semibold leading-tight">How to start something you'll finish</p><p class="mt-[0.2em] text-[0.8em] opacity-60">6 min read</p></div>
+                                        <div class="space-y-[0.9em]">
+                                            <div class="border-b border-[#2A2118]/10 pb-[0.7em]"><p class="font-mono text-[0.7em] opacity-50">GUIDES</p><p class="font-semibold leading-snug">Ten things to try this weekend</p></div>
+                                            <div class="border-b border-[#2A2118]/10 pb-[0.7em]"><p class="font-mono text-[0.7em] opacity-50">NEWS</p><p class="font-semibold leading-snug">What changed this month</p></div>
+                                            <div><p class="font-mono text-[0.7em] opacity-50">STORIES</p><p class="font-semibold leading-snug">A slow morning, written down</p></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="mt-4 font-display text-lg font-semibold">Blog</p>
+                            <p class="mt-1 text-sm text-white/60">Easy reading, smart layouts, posts that stand out.</p>
+                        </article>
+
+                        <article class="w-[80vw] flex-none sm:w-[58vw] lg:w-[min(640px,50vw)]" data-hs-card>
+                            <div class="mock aspect-[16/10] overflow-hidden rounded-xl bg-white">
+                                <div class="mock-body flex h-full flex-col bg-[#0F1418] text-white" style="font-size: 2.2cqw">
+                                    <div class="flex items-center gap-[0.4em] bg-white/5 px-[1em] py-[0.6em]"><span class="h-[0.6em] w-[0.6em] rounded-full bg-white/20"></span><span class="h-[0.6em] w-[0.6em] rounded-full bg-white/20"></span><span class="h-[0.6em] w-[0.6em] rounded-full bg-white/20"></span><span class="ml-[1em] rounded-full bg-white/5 px-[1em] py-[0.15em] text-[0.8em] opacity-60">yourclan.gg</span></div>
+                                    <div class="flex items-center justify-between px-[2em] py-[1em]"><span class="font-display text-[1.4em] font-bold tracking-wide">YOUR CLAN</span><span class="flex items-center gap-[0.4em] rounded-full bg-[#A3E635]/15 px-[0.8em] py-[0.25em] text-[0.8em] text-[#A3E635]"><span class="h-[0.5em] w-[0.5em] rounded-full bg-[#A3E635]"></span>Server online</span></div>
+                                    <div class="grid flex-1 grid-cols-[1.2fr_1fr] gap-[1.6em] px-[2em] pb-[2em]">
+                                        <div class="flex flex-col justify-center"><p class="font-display text-[2.6em] font-bold uppercase leading-[0.95]">Play with us every Friday.</p><span class="mt-[1em] self-start rounded-[0.4em] bg-[#A3E635] px-[1.2em] py-[0.6em] font-semibold text-[#0F1418]">Join the server</span></div>
+                                        <div class="space-y-[0.5em] self-center">
+                                            <div class="flex items-center justify-between rounded-[0.5em] bg-white/5 px-[0.8em] py-[0.55em]"><span>Player one</span><span class="font-mono text-[0.75em] text-[#A3E635]">LEADER</span></div>
+                                            <div class="flex items-center justify-between rounded-[0.5em] bg-white/5 px-[0.8em] py-[0.55em]"><span>Player two</span><span class="font-mono text-[0.75em] opacity-60">MOD</span></div>
+                                            <div class="flex items-center justify-between rounded-[0.5em] bg-white/5 px-[0.8em] py-[0.55em]"><span>Player three</span><span class="font-mono text-[0.75em] opacity-60">MEMBER</span></div>
+                                            <div class="flex items-center justify-between rounded-[0.5em] bg-white/5 px-[0.8em] py-[0.55em]"><span>Player four</span><span class="font-mono text-[0.75em] opacity-60">MEMBER</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="mt-4 font-display text-lg font-semibold">Gaming &amp; community</p>
+                            <p class="mt-1 text-sm text-white/60">Clan pages, server hubs, and creator sites.</p>
+                        </article>
+
+                        <article class="w-[80vw] flex-none sm:w-[58vw] lg:w-[min(640px,50vw)]" data-hs-card>
+                            <div class="mock aspect-[16/10] overflow-hidden rounded-xl bg-white">
+                                <div class="mock-body flex h-full flex-col bg-[#FF6B3D] text-[#1A0F0A]" style="font-size: 2.2cqw">
+                                    <div class="flex items-center gap-[0.4em] bg-white/20 px-[1em] py-[0.6em]"><span class="h-[0.6em] w-[0.6em] rounded-full bg-black/20"></span><span class="h-[0.6em] w-[0.6em] rounded-full bg-black/20"></span><span class="h-[0.6em] w-[0.6em] rounded-full bg-black/20"></span><span class="ml-[1em] rounded-full bg-black/10 px-[1em] py-[0.15em] text-[0.8em] opacity-70">yourlaunch.com</span></div>
+                                    <div class="flex flex-1 flex-col justify-center px-[2.4em]">
+                                        <p class="font-mono text-[0.8em] uppercase tracking-[0.2em] opacity-70">Launching this spring</p>
+                                        <p class="mt-[0.4em] font-display text-[3.6em] font-semibold leading-[0.92] tracking-tight">Something new<br>is coming.</p>
+                                        <div class="mt-[1.2em] flex max-w-[70%] items-center rounded-full bg-white p-[0.3em] pl-[1.1em]"><span class="flex-1 opacity-50">you@email.com</span><span class="rounded-full bg-[#1A0F0A] px-[1.1em] py-[0.55em] font-semibold text-white">Notify me</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="mt-4 font-display text-lg font-semibold">Landing page</p>
+                            <p class="mt-1 text-sm text-white/60">One page, one goal, zero distractions.</p>
+                        </article>
+
+                    </div>
+                </div>
+
+                <div class="wrap mt-8 w-full md:mt-12">
+                    <div class="hs-progress h-px bg-white/15"><span></span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 05 3D devices -->
+        <section id="devices" class="scene h-[240vh] bg-white" data-scene>
+            <div class="scene-sticky">
+                <div class="absolute inset-x-0 top-[calc(64px+4vh)] z-10 px-4 text-center md:top-[calc(72px+4vh)]">
+                    <p class="eyebrow">05 — 3D devices</p>
+                    <h2 class="mt-3 font-display text-2xl font-semibold leading-tight tracking-tight text-ink md:text-[2.6rem]">Looks right on every screen.</h2>
+                </div>
+
+                <div class="dev-stage absolute inset-x-0 bottom-0 top-[12%]" aria-hidden="true">
+                    <div class="dev-stage-inner">
+                        <!-- Desktop -->
+                        <div class="dev dev-desktop mock overflow-hidden rounded-xl border border-line bg-white" style="--sz: 0px; width: 580px; height: 370px">
+                            <div class="mock-body flex h-full flex-col bg-[#F5ECE0] text-[#3A2316]" style="font-size: 2.1cqw">
+                                <div class="flex items-center gap-[0.4em] bg-white/70 px-[1em] py-[0.6em]"><span class="h-[0.6em] w-[0.6em] rounded-full bg-black/15"></span><span class="h-[0.6em] w-[0.6em] rounded-full bg-black/15"></span><span class="h-[0.6em] w-[0.6em] rounded-full bg-black/15"></span><span class="ml-[1em] rounded-full bg-black/5 px-[1em] py-[0.15em] text-[0.8em] opacity-60">yourbakery.com</span></div>
+                                <div class="flex items-center justify-between px-[2em] py-[1em]"><span class="font-display text-[1.3em] font-semibold">yourbakery<span class="text-[#C46A3A]">.</span></span><span class="rounded-full bg-[#3A2316] px-[1em] py-[0.4em] text-[0.85em] text-[#F5ECE0]">Order ahead</span></div>
+                                <div class="grid flex-1 grid-cols-2 items-center gap-[1.5em] px-[2em] pb-[1.5em]">
+                                    <div><p class="font-display text-[2.8em] font-semibold leading-[0.95]">Bread worth waking up for.</p><span class="mt-[1em] inline-block rounded-full bg-[#C46A3A] px-[1.2em] py-[0.6em] font-semibold text-white">See the menu</span></div>
+                                    <div class="relative aspect-square"><div class="absolute inset-[6%] rounded-full bg-[#E5B78C]"></div><div class="loaf loaf-scored" style="left: 12%; top: 28%; width: 66%; height: 40%; transform: rotate(-14deg)"></div></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Tablet -->
+                        <div class="dev dev-tablet mock overflow-hidden rounded-[1.6rem] border-[8px] border-ink bg-ink" style="--sz: 110px; width: 240px; height: 320px">
+                            <div class="mock-body flex h-full flex-col rounded-[1rem] bg-[#F5ECE0] p-[6%] text-[#3A2316]" style="font-size: 5cqw">
+                                <div class="flex items-center justify-between"><span class="font-display text-[1.2em] font-semibold">yourbakery<span class="text-[#C46A3A]">.</span></span><span class="text-[0.8em] opacity-60">Menu</span></div>
+                                <div class="relative mt-[8%] aspect-[4/3]"><div class="absolute inset-y-0 left-1/2 aspect-square -translate-x-1/2 rounded-full bg-[#E5B78C]"></div><div class="loaf loaf-scored" style="left: 14%; top: 22%; width: 72%; height: 50%; transform: rotate(-12deg)"></div></div>
+                                <p class="mt-[8%] font-display text-[2em] font-semibold leading-[0.95]">Bread worth waking up for.</p>
+                                <span class="mt-auto rounded-full bg-[#C46A3A] py-[0.6em] text-center font-semibold text-white">See the menu</span>
+                            </div>
+                        </div>
+                        <!-- Phone -->
+                        <div class="dev dev-phone mock overflow-hidden rounded-[1.6rem] border-[6px] border-ink bg-ink" style="--sz: 220px; width: 140px; height: 290px">
+                            <div class="mock-body flex h-full flex-col rounded-[1.2rem] bg-[#F5ECE0] p-[9%] pt-[16%] text-[#3A2316]" style="font-size: 8cqw">
+                                <span class="font-display text-[1.05em] font-semibold">yourbakery<span class="text-[#C46A3A]">.</span></span>
+                                <div class="relative mt-[12%] aspect-square"><div class="absolute inset-[4%] rounded-full bg-[#E5B78C]"></div><div class="loaf loaf-scored" style="left: 10%; top: 28%; width: 80%; height: 44%; transform: rotate(-12deg)"></div></div>
+                                <p class="mt-[10%] font-display text-[1.5em] font-semibold leading-[0.95]">Bread worth waking up for.</p>
+                                <span class="mt-auto rounded-full bg-[#C46A3A] py-[0.5em] text-center text-[0.85em] font-semibold text-white">Menu</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="absolute inset-x-0 bottom-6 px-4 text-center text-sm text-muted">Good for showing off apps, products, and responsive designs.</p>
+            </div>
+        </section>
+
+        <!-- 06 Micro-interactions -->
+        <section id="details" class="border-t border-line bg-mist py-24 md:py-32">
+            <div class="wrap">
+                <p class="eyebrow">06 — Micro-interactions</p>
+                <h2 class="mt-4 font-display text-3xl font-semibold leading-tight tracking-tight text-ink md:text-[2.6rem]">Small details people notice.</h2>
+                <p class="mt-4 max-w-xl leading-relaxed text-muted">Hover, click, and play with these. Little moments like this make a site feel finished.</p>
+
+                <div class="mt-12 grid gap-4 md:grid-cols-3">
+
+                    <!-- Count-up dashboard -->
+                    <div class="scroll-reveal rounded-xl border border-line bg-white p-6 md:col-span-2 md:p-8" data-count-card>
+                        <div class="flex items-center justify-between gap-4">
+                            <p class="font-mono text-xs uppercase tracking-[0.14em] text-muted">Numbers that count up</p>
+                            <span class="rounded-full border border-line px-2.5 py-0.5 font-mono text-[11px] text-muted">Sample data</span>
+                        </div>
+                        <div class="mt-6 grid grid-cols-3 gap-4">
+                            <div><p class="font-display text-[clamp(1.6rem,3.6vw,2.6rem)] font-semibold tabular-nums text-ink" data-count="12480">0</p><p class="mt-1 text-sm text-muted">Visitors</p></div>
+                            <div><p class="font-display text-[clamp(1.6rem,3.6vw,2.6rem)] font-semibold tabular-nums text-ink" data-count="1284">0</p><p class="mt-1 text-sm text-muted">Orders</p></div>
+                            <div><p class="font-display text-[clamp(1.6rem,3.6vw,2.6rem)] font-semibold tabular-nums text-ink" data-count="4.9" data-decimals="1">0</p><p class="mt-1 text-sm text-muted">Avg. rating</p></div>
+                        </div>
+                        <div class="mt-8 flex h-28 items-end gap-1.5 md:gap-2" aria-hidden="true">
+                            <span class="count-bar flex-1 rounded-t-sm bg-brand-light" style="height: 34%; transition-delay: 0ms"></span>
+                            <span class="count-bar flex-1 rounded-t-sm bg-brand-light" style="height: 48%; transition-delay: 50ms"></span>
+                            <span class="count-bar flex-1 rounded-t-sm bg-brand-light" style="height: 40%; transition-delay: 100ms"></span>
+                            <span class="count-bar flex-1 rounded-t-sm bg-brand-light" style="height: 58%; transition-delay: 150ms"></span>
+                            <span class="count-bar flex-1 rounded-t-sm bg-brand-light" style="height: 52%; transition-delay: 200ms"></span>
+                            <span class="count-bar flex-1 rounded-t-sm bg-brand-light" style="height: 66%; transition-delay: 250ms"></span>
+                            <span class="count-bar flex-1 rounded-t-sm bg-brand-light" style="height: 60%; transition-delay: 300ms"></span>
+                            <span class="count-bar flex-1 rounded-t-sm bg-brand-light" style="height: 74%; transition-delay: 350ms"></span>
+                            <span class="count-bar flex-1 rounded-t-sm bg-brand-light" style="height: 70%; transition-delay: 400ms"></span>
+                            <span class="count-bar flex-1 rounded-t-sm bg-brand-light" style="height: 82%; transition-delay: 450ms"></span>
+                            <span class="count-bar flex-1 rounded-t-sm bg-brand-light" style="height: 78%; transition-delay: 500ms"></span>
+                            <span class="count-bar flex-1 rounded-t-sm bg-brand" style="height: 96%; transition-delay: 550ms"></span>
+                        </div>
+                    </div>
+
+                    <!-- 3D tilt -->
+                    <div class="scroll-reveal rounded-xl border border-line bg-white p-3">
+                        <div class="tilt-card relative flex h-full min-h-[260px] flex-col justify-between rounded-lg bg-ink p-6 text-white" data-tilt>
+                            <p class="font-mono text-xs uppercase tracking-[0.14em] text-white/60">3D tilt</p>
+                            <div class="tilt-pop">
+                                <p class="font-display text-3xl font-semibold leading-tight" data-touch-text="Tilts toward<br>your cursor.">Hover over<br>this card.</p>
+                                <p class="mt-2 text-sm text-white/60" data-touch-text="Try it on a computer.">It follows your cursor.</p>
+                            </div>
+                            <span class="tilt-pop absolute right-6 top-6 h-14 w-14 rounded-full bg-brand" aria-hidden="true"></span>
+                        </div>
+                    </div>
+
+                    <!-- Magnetic button -->
+                    <div class="scroll-reveal flex min-h-[260px] flex-col rounded-xl border border-line bg-white p-6" data-magnet-area>
+                        <p class="font-mono text-xs uppercase tracking-[0.14em] text-muted">Magnetic button</p>
+                        <div class="flex flex-1 items-center justify-center py-6">
+                            <a href="index.html#contact" class="magnet flex h-28 w-28 items-center justify-center rounded-full bg-brand text-center text-sm font-semibold leading-tight text-white" data-magnet>Contact<br>sales</a>
+                        </div>
+                        <p class="text-sm text-muted" data-touch-text="On a computer, it pulls toward your cursor.">Move your cursor near it.</p>
+                    </div>
+
+                    <!-- Typing -->
+                    <div class="scroll-reveal flex min-h-[260px] flex-col rounded-xl border border-line bg-white p-6">
+                        <p class="font-mono text-xs uppercase tracking-[0.14em] text-muted">Typing text</p>
+                        <p class="mt-auto font-display text-3xl font-semibold leading-tight text-ink">
+                            We build<br><span class="text-brand" data-typing data-words="online stores.|portfolios.|landing pages.|gaming sites.|business websites.">online stores.</span><span class="caret text-brand" aria-hidden="true"></span>
+                        </p>
+                    </div>
+
+                    <!-- Dark mode switch -->
+                    <div class="theme-demo group scroll-reveal flex min-h-[260px] flex-col rounded-xl border border-line bg-white p-6 data-[dark=true]:border-ink data-[dark=true]:bg-ink" data-theme-demo data-dark="false">
+                        <div class="flex items-center justify-between">
+                            <p class="font-mono text-xs uppercase tracking-[0.14em] text-muted group-data-[dark=true]:text-white/60">Dark mode switch</p>
+                            <button type="button" class="relative h-7 w-12 rounded-full bg-line group-data-[dark=true]:bg-brand" aria-pressed="false" aria-label="Toggle dark mode on this card" data-theme-toggle>
+                                <span class="absolute left-1 top-1 h-5 w-5 rounded-full bg-white shadow-sm group-data-[dark=true]:translate-x-5"></span>
+                            </button>
+                        </div>
+                        <div class="mt-auto rounded-lg border border-line bg-mist p-4 group-data-[dark=true]:border-white/10 group-data-[dark=true]:bg-ink-800">
+                            <div class="flex items-center gap-3">
+                                <span class="h-10 w-10 rounded-full bg-brand-light group-data-[dark=true]:bg-brand"></span>
+                                <div><p class="text-sm font-semibold text-ink group-data-[dark=true]:text-white">Your product</p><p class="text-xs text-muted group-data-[dark=true]:text-white/60">Light or dark — your call</p></div>
+                            </div>
+                            <div class="mt-4 h-2 rounded-full bg-line group-data-[dark=true]:bg-white/10"><div class="h-full w-2/3 rounded-full bg-brand"></div></div>
+                        </div>
+                    </div>
+
+                    <!-- Ticker -->
+                    <div class="marquee scroll-reveal overflow-hidden rounded-xl border border-line bg-white py-6 md:col-span-3">
+                        <p class="px-6 font-mono text-xs uppercase tracking-[0.14em] text-muted">Ticker — hover to pause</p>
+                        <div class="mt-5 overflow-hidden" aria-hidden="true">
+                            <div class="marquee-track font-display text-3xl font-semibold tracking-tight text-ink md:text-5xl">
+                                <span class="flex flex-none items-center gap-8 pr-8">Business websites<span class="text-brand">+</span>Online stores<span class="text-brand">+</span>Portfolios<span class="text-brand">+</span>Blogs<span class="text-brand">+</span>Gaming sites<span class="text-brand">+</span>Landing pages<span class="text-brand">+</span>Redesigns<span class="text-brand">+</span></span>
+                                <span class="flex flex-none items-center gap-8 pr-8">Business websites<span class="text-brand">+</span>Online stores<span class="text-brand">+</span>Portfolios<span class="text-brand">+</span>Blogs<span class="text-brand">+</span>Gaming sites<span class="text-brand">+</span>Landing pages<span class="text-brand">+</span>Redesigns<span class="text-brand">+</span></span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 07 Shape reveal + call to action -->
+        <section id="reveal" class="scene h-[220vh] bg-ink" data-scene>
+            <div class="scene-sticky">
+                <div class="circle-intro absolute inset-0 flex flex-col items-center justify-center px-4 text-center text-white">
+                    <p class="font-mono text-xs font-medium uppercase tracking-[0.14em] text-brand-sky">07 — Shape reveal</p>
+                    <h2 class="mt-4 font-display text-4xl font-semibold tracking-tight md:text-6xl">Keep scrolling.</h2>
+                </div>
+                <div class="circle-layer absolute inset-0 flex flex-col items-center justify-center bg-brand px-4 text-center text-white">
+                    <h2 class="font-display text-[clamp(2.4rem,6vw,5rem)] font-semibold leading-[1.02] tracking-tight">Want this on your site?</h2>
+                    <p class="mt-5 max-w-xl text-lg leading-relaxed text-white/80">Tell us what you want built. Every project gets a custom quote.</p>
+                    <div class="mt-9 flex w-full max-w-xs flex-col gap-3 sm:w-auto sm:max-w-none sm:flex-row">
+                        <a href="index.html#contact" class="btn btn-light px-7">Contact sales</a>
+                        <a href="index.html#services" class="btn border border-white/40 px-7 text-white hover:border-white">See our services</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-ink text-white">
+        <div class="wrap py-14">
+            <div class="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
+                <div class="max-w-sm">
+                    <a href="index.html" class="flex items-center gap-2.5" aria-label="Website Requests + home">
+                        <img src="assets/logo-mark-light.png" alt="" width="58" height="30" class="h-[30px] w-auto">
+                        <span class="font-display text-[17px] font-semibold tracking-tight">Website Requests <span class="text-brand-sky">+</span></span>
+                    </a>
+                    <p class="mt-4 font-mono text-xs uppercase tracking-[0.14em] text-white/50">Professional websites. Powerful results.</p>
+                </div>
+                <div class="grid grid-cols-2 gap-10 text-sm sm:gap-16">
+                    <div>
+                        <p class="font-mono text-xs uppercase tracking-[0.14em] text-white/50">Site</p>
+                        <ul class="mt-4 space-y-2.5">
+                            <li><a href="index.html#services" class="text-white/80 hover:text-white">Services</a></li>
+                            <li><a href="showcase.html" class="text-white/80 hover:text-white">What we can do</a></li>
+                            <li><a href="index.html#process" class="text-white/80 hover:text-white">Process</a></li>
+                            <li><a href="index.html#pricing" class="text-white/80 hover:text-white">Pricing</a></li>
+                            <li><a href="index.html#faq" class="text-white/80 hover:text-white">FAQ</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-mono text-xs uppercase tracking-[0.14em] text-white/50">Contact</p>
+                        <ul class="mt-4 space-y-2.5">
+                            <li><a href="index.html#contact" class="text-white/80 hover:text-white">Contact sales</a></li>
+                            <li class="discord-only"><a href="https://discord.gg/3CdYWtE7K3" target="_blank" rel="noopener" class="text-white/80 hover:text-white">Discord</a></li>
+                            <li><a href="mailto:websiterequestsplus@gmail.com" class="text-white/80 hover:text-white">Email</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 border-t border-white/10 pt-6 text-xs text-white/50">
+                © 2026 Website Requests +. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="nav.js"></script>
+    <script src="animations.js"></script>
+    <script src="showcase.js"></script>
+</body>
+</html>
