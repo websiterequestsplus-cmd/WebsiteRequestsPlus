@@ -4,6 +4,10 @@
     const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
     if (reduce) root.classList.add('reduce');
 
+    // Where the browser supports scroll-driven animations, CSS moves everything
+    // off the main thread; JS then only flips the few on/off bits.
+    const cssScroll = !reduce && !!(window.CSS && CSS.supports('animation-timeline: view()'));
+
     const clamp = (v, min = 0, max = 1) => Math.min(max, Math.max(min, v));
     const $ = (selector, el = document) => el.querySelector(selector);
     const $$ = (selector, el = document) => [...el.querySelectorAll(selector)];
@@ -19,6 +23,7 @@
             const caption = $('[data-zoom-caption]', scene);
             return {
                 render(p, s) {
+                    if (cssScroll) return;
                     const start = s.small ? 0.72 : 0.6;
                     const scale = start + (1 - start) * p;
                     frame.style.transform = `translate3d(0, ${((1 - p) * 0.09 * s.h).toFixed(1)}px, 0) scale(${scale.toFixed(4)})`;
@@ -44,7 +49,7 @@
             return {
                 render(p) {
                     const n = steps.length;
-                    bars.forEach((bar, i) => (bar.style.transform = `scaleX(${clamp(p * n - i).toFixed(3)})`));
+                    if (!cssScroll) bars.forEach((bar, i) => (bar.style.transform = `scaleX(${clamp(p * n - i).toFixed(3)})`));
                     const next = Math.min(n - 1, Math.floor(p * n));
                     if (next === index) return;
                     index = next;
@@ -60,17 +65,23 @@
             const count = $('[data-hs-count]', scene);
             const cards = $$('[data-hs-card]', scene);
             let shift = 0;
+            let shown = '';
             return {
                 measure() {
-                    const last = cards[cards.length - 1];
-                    const padRight = parseFloat(getComputedStyle(track).paddingRight) || 0;
-                    shift = Math.max(0, last.offsetLeft + last.offsetWidth + padRight - track.clientWidth);
+                    // The track is as wide as its cards; it slides until its end meets the viewport's
+                    shift = Math.max(0, track.offsetWidth - track.parentElement.clientWidth);
                 },
                 render(p) {
                     if (reduce) return;
-                    track.style.transform = `translate3d(${(-shift * p).toFixed(1)}px, 0, 0)`;
-                    bar.style.transform = `scaleX(${p.toFixed(4)})`;
-                    if (count) count.textContent = String(Math.round(p * (cards.length - 1)) + 1).padStart(2, '0');
+                    if (!cssScroll) {
+                        track.style.transform = `translate3d(${(-shift * p).toFixed(1)}px, 0, 0)`;
+                        bar.style.transform = `scaleX(${p.toFixed(4)})`;
+                    }
+                    const label = String(Math.round(p * (cards.length - 1)) + 1).padStart(2, '0');
+                    if (count && label !== shown) {
+                        shown = label;
+                        count.textContent = label;
+                    }
                 },
             };
         },
@@ -91,6 +102,7 @@
                     });
                 },
                 render(p) {
+                    if (cssScroll) return;
                     const q = 1 - p;
                     devs.forEach((d) => {
                         // Own perspective per device: they layer in page order and never intersect
@@ -108,16 +120,24 @@
             const blob = $('[data-circle-blob]', scene);
             const intro = $('[data-circle-intro]', scene);
             const cta = $('[data-circle-cta]', scene);
+            let clickable = null;
             return {
                 render(p) {
-                    const grow = clamp((p - 0.05) / 0.75);
-                    blob.style.transform = `scale(${grow.toFixed(4)})`;
-                    intro.style.opacity = clamp(1 - p * 2.2).toFixed(3);
-                    intro.style.transform = `scale(${(1 - p * 0.15).toFixed(4)})`;
                     const show = clamp((p - 0.55) / 0.3);
-                    cta.style.opacity = show.toFixed(3);
-                    cta.style.transform = `translate3d(0, ${((1 - show) * 24).toFixed(1)}px, 0)`;
-                    cta.style.pointerEvents = show > 0.5 ? 'auto' : 'none';
+                    if (!cssScroll) {
+                        const grow = clamp((p - 0.05) / 0.75);
+                        blob.style.transform = `scale(${grow.toFixed(4)})`;
+                        intro.style.opacity = clamp(1 - p * 2.2).toFixed(3);
+                        intro.style.transform = `scale(${(1 - p * 0.15).toFixed(4)})`;
+                        cta.style.opacity = show.toFixed(3);
+                        cta.style.transform = `translate3d(0, ${((1 - show) * 24).toFixed(1)}px, 0)`;
+                    }
+                    // Buttons only take taps once they're mostly visible
+                    const next = show > 0.5;
+                    if (next !== clickable) {
+                        clickable = next;
+                        cta.style.pointerEvents = next ? 'auto' : 'none';
+                    }
                 },
             };
         },
@@ -151,6 +171,12 @@
             lit.appendChild(span);
             if (i < parts.length - 1) lit.appendChild(document.createTextNode(' '));
             words.push({ el: span, o: 0.14 });
+            if (cssScroll) {
+                // Each word lights during its own slice of the paragraph's trip up the screen
+                const start = 12 + (53 * i) / parts.length;
+                const end = start + 53 / parts.length;
+                span.style.animationRange = `cover ${start.toFixed(2)}% cover ${end.toFixed(2)}%`;
+            }
         });
     }
 
@@ -198,7 +224,7 @@
             s.p = p;
             s.ctrl.render(p, s);
         });
-        if (lit && !reduce) updateLit(y, vh);
+        if (lit && !reduce && !cssScroll) updateLit(y, vh);
     }
 
     function requestFrame() {
@@ -313,19 +339,29 @@
         });
     });
 
-    // Magnetic button: pulls toward the mouse or a finger
+    // Magnetic button: pulls toward the mouse, or follows a finger dragged near it.
+    // A plain tap still opens Contact sales.
     $$('[data-magnet-area]').forEach((area) => {
         const button = $('[data-magnet]', area);
         if (!button || reduce) return;
+        let home = null;
         const pull = (e) => {
-            const r = button.getBoundingClientRect();
-            const dx = e.clientX - (r.left + r.width / 2);
-            const dy = e.clientY - (r.top + r.height / 2);
-            const strength = clamp(1 - Math.hypot(dx, dy) / 170);
-            button.style.transform = `translate3d(${(dx * 0.4 * strength).toFixed(1)}px, ${(dy * 0.4 * strength).toFixed(1)}px, 0)`;
+            const touch = e.pointerType !== 'mouse';
+            // Measure from the resting spot, not the moved button, so it doesn't drift away
+            if (!home) {
+                const r = button.getBoundingClientRect();
+                const t = new DOMMatrixReadOnly(getComputedStyle(button).transform);
+                home = { x: r.left + r.width / 2 - t.m41, y: r.top + r.height / 2 - t.m42 };
+            }
+            const dx = e.clientX - home.x;
+            const dy = e.clientY - home.y;
+            const strength = clamp(1 - Math.hypot(dx, dy) / (touch ? 260 : 170));
+            const factor = touch ? 0.55 : 0.4;
+            button.style.transform = `translate3d(${(dx * factor * strength).toFixed(1)}px, ${(dy * factor * strength).toFixed(1)}px, 0)`;
         };
         const release = () => {
             button.style.transform = '';
+            home = null;
         };
         area.addEventListener('pointerdown', pull);
         area.addEventListener('pointermove', pull);
