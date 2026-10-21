@@ -12,7 +12,11 @@
 
     if (!requestForm) return;
 
-    let contactMethod = 'discord';
+    // Discord can be switched off site-wide in site-config.js
+    const DISCORD_ON = !window.SITE || window.SITE.discord !== false;
+    const DEFAULT_METHOD = DISCORD_ON ? 'discord' : 'email';
+
+    let contactMethod = DEFAULT_METHOD;
 
     function setContactMethod(method) {
         contactMethod = method;
@@ -20,22 +24,24 @@
         const isDiscord = method === 'discord';
         methodDiscord.classList.toggle('method-active', isDiscord);
         methodEmail.classList.toggle('method-active', !isDiscord);
+        methodDiscord.setAttribute('aria-pressed', String(isDiscord));
+        methodEmail.setAttribute('aria-pressed', String(!isDiscord));
         emailFieldWrap.classList.toggle('hidden', isDiscord);
         emailNotice.classList.toggle('hidden', isDiscord);
 
-        submitBtn.textContent = isDiscord ? 'Submit & Open Discord' : 'Compose Email';
+        submitBtn.textContent = isDiscord ? 'Send via Discord' : 'Send via Email';
         submitHint.textContent = isDiscord
-            ? 'Recommended — connect with us instantly in our Discord workspace.'
-            : 'This will open your email client so you can send the request directly to our inbox.';
+            ? 'Your details are copied, then Discord opens so you can paste them.'
+            : 'Your email app opens with the request ready to send to our inbox.';
     }
 
     methodDiscord.addEventListener('click', () => setContactMethod('discord'));
     methodEmail.addEventListener('click', () => setContactMethod('email'));
-    setContactMethod('discord');
+    setContactMethod(DEFAULT_METHOD);
 
     function buildRequestSummary(data) {
         return [
-            'New Website Request — WEBSITE REQUESTS +',
+            'Quote Request — Website Requests +',
             '',
             `Name: ${data.name}`,
             `Reply Email: ${data.replyEmail || 'Not provided'}`,
@@ -58,7 +64,7 @@
 
 
     function openMailClient(data) {
-        const subject = encodeURIComponent(`Website Request: ${data.websiteName}`);
+        const subject = encodeURIComponent(`Quote Request: ${data.websiteName}`);
         const body = encodeURIComponent(buildRequestSummary(data));
         window.location.href = `mailto:${BUSINESS_EMAIL}?subject=${subject}&body=${body}`;
     }
@@ -88,6 +94,11 @@
             return;
         }
 
+        if (contactMethod === 'email' && !document.getElementById('ticket-email').checkValidity()) {
+            window.showToast('That email address doesn’t look right.');
+            return;
+        }
+
         submitBtn.disabled = true;
         submitBtn.classList.add('opacity-70', 'cursor-wait');
 
@@ -105,12 +116,12 @@
             } else {
                 openMailClient(data);
                 requestForm.reset();
-                setContactMethod('discord');
+                setContactMethod(DEFAULT_METHOD);
                 return;
             }
 
             requestForm.reset();
-            setContactMethod('discord');
+            setContactMethod(DEFAULT_METHOD);
         } catch (error) {
             console.error(error);
             window.showToast('Something went wrong. Try Discord for the fastest response.');
