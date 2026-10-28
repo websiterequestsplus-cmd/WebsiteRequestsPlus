@@ -1,4 +1,4 @@
-import { ready, db, currentUser, watchUser, wireAccountNav, isAdmin } from './firebase-init.js?v=7';
+import { ready, db, currentUser, watchUser, wireAccountNav, isAdmin } from './firebase-init.js?v=8';
 import {
     collection,
     doc,
@@ -8,10 +8,12 @@ import {
     onSnapshot,
     writeBatch,
     updateDoc,
+    setDoc,
+    deleteDoc,
     getDocs,
     serverTimestamp,
 } from 'https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js';
-import { el, millis, shortTime, longTime, statusChip, renderMessages, wireComposer, setPane, TEAM_NAME, MAX_MESSAGE } from './chat-ui.js?v=7';
+import { el, millis, shortTime, longTime, statusChip, renderMessages, wireComposer, setPane, TEAM_NAME, MAX_MESSAGE } from './chat-ui.js?v=8';
 
 const $ = (id) => document.getElementById(id);
 const listPane = $('list-pane');
@@ -46,32 +48,104 @@ async function start() {
     let filter = 'open';
     let search = '';
     let firstLoad = true;
+    let stopChats = null;
 
-    const chatsQuery = query(collection(db, 'chats'), orderBy('updatedAt', 'desc'), limit(500));
-    onSnapshot(
-        chatsQuery,
-        (snap) => {
-            chats = snap.docs.map((d) => ({ id: d.id, ...d.data() })).sort((a, b) => millis(b.updatedAt) - millis(a.updatedAt));
-            if (activeId && !chats.some((c) => c.id === activeId)) closeThread();
-            renderList();
-            if (activeId) {
-                renderHeader();
-                markRead();
+    // ----- Team PIN -----
+    // Firebase checks the PIN against config/adminPin (unreadable from the site) and only
+    // then lets this sign-in read chats. A locked inbox shows up as "permission-denied".
+    const unlockRef = doc(db, 'adminUnlocks', user.uid);
+    let failedTries = 0;
+
+    function showPin(message) {
+        if (stopChats) stopChats();
+        if (stopMessages) stopMessages();
+        stopChats = null;
+        stopMessages = null;
+        $('loading').classList.add('hidden');
+        $('inbox-app').classList.add('hidden');
+        $('pin-box').classList.remove('hidden');
+        const error = $('pin-error');
+        error.textContent = message || '';
+        error.classList.toggle('hidden', !message);
+        $('pin-input').value = '';
+        $('pin-input').focus();
+    }
+
+    $('pin-form').addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const pin = $('pin-input').value.trim();
+        if (!pin) return;
+        const button = $('pin-submit');
+        button.disabled = true;
+        try {
+            const token = await user.getIdTokenResult();
+            await setDoc(unlockRef, { pin, at: serverTimestamp(), session: token.claims.auth_time });
+            failedTries = 0;
+            $('pin-box').classList.add('hidden');
+            $('loading').classList.remove('hidden');
+            listen();
+        } catch (e) {
+            failedTries += 1;
+            const wait = failedTries >= 5 ? 30 : 0;
+            showPin(wait ? 'Wrong PIN. Too many tries, wait 30 seconds.' : 'Wrong PIN. Try again.');
+            if (wait) {
+                button.disabled = true;
+                setTimeout(() => (button.disabled = false), wait * 1000);
+                return;
             }
-            if (firstLoad) {
-                firstLoad = false;
-                $('loading').classList.add('hidden');
-                $('inbox-app').classList.remove('hidden');
-                const wanted = new URLSearchParams(location.search).get('c');
-                if (wanted && chats.some((c) => c.id === wanted)) openChat(wanted);
-                else setPane(listPane, threadPane, 'list');
-            }
-        },
-        (error) => {
-            console.error(error);
-            $('loading').textContent = 'Couldn’t load the inbox. Check the security rules are published, then refresh.';
         }
-    );
+        button.disabled = false;
+    });
+
+    $('lock-inbox').addEventListener('click', async () => {
+        try {
+            await deleteDoc(unlockRef);
+        } catch (e) {
+            console.error(e);
+        }
+        closeThread();
+        showPin();
+    });
+
+    function onLocked(error) {
+        if (error && error.code === 'permission-denied') {
+            showPin();
+            return true;
+        }
+        console.error(error);
+        return false;
+    }
+
+    function listen() {
+        firstLoad = true;
+        const chatsQuery = query(collection(db, 'chats'), orderBy('updatedAt', 'desc'), limit(500));
+        stopChats = onSnapshot(
+            chatsQuery,
+            (snap) => {
+                chats = snap.docs.map((d) => ({ id: d.id, ...d.data() })).sort((a, b) => millis(b.updatedAt) - millis(a.updatedAt));
+                if (activeId && !chats.some((c) => c.id === activeId)) closeThread();
+                renderList();
+                if (activeId) {
+                    renderHeader();
+                    markRead();
+                }
+                if (firstLoad) {
+                    firstLoad = false;
+                    $('loading').classList.add('hidden');
+                    $('inbox-app').classList.remove('hidden');
+                    const wanted = new URLSearchParams(location.search).get('c');
+                    if (wanted && chats.some((c) => c.id === wanted)) openChat(wanted);
+                    else setPane(listPane, threadPane, 'list');
+                }
+            },
+            (error) => {
+                if (!onLocked(error)) {
+                    $('loading').textContent = 'Couldn’t load the inbox. Check the security rules are published, then refresh.';
+                }
+            }
+        );
+    }
+    listen();
 
     function matches(chat) {
         if (filter === 'open' && chat.status !== 'open') return false;
@@ -170,7 +244,7 @@ async function start() {
         stopMessages = onSnapshot(
             query(collection(db, 'chats', id, 'messages'), orderBy('createdAt')),
             (snap) => renderMessages(box, snap.docs.map((d) => d.data()), 'admin'),
-            (error) => console.error(error)
+            (error) => onLocked(error)
         );
         markRead();
         history.replaceState(null, '', `inbox.html?c=${encodeURIComponent(id)}`);
@@ -208,8 +282,7 @@ async function start() {
         try {
             await updateDoc(doc(db, 'chats', chat.id), { status: chat.status === 'open' ? 'closed' : 'open' });
         } catch (e) {
-            console.error(e);
-            alert('Couldn’t change that chat. Try again.');
+            if (!onLocked(e)) alert('Couldn’t change that chat. Try again.');
         }
     });
 
@@ -244,8 +317,7 @@ async function start() {
             await last.commit();
             closeThread();
         } catch (e) {
-            console.error(e);
-            alert('Couldn’t delete that chat. Try again.');
+            if (!onLocked(e)) alert('Couldn’t delete that chat. Try again.');
         }
     });
 
@@ -283,9 +355,8 @@ async function start() {
             $('messages').dataset.fresh = '1';
             await batch.commit();
         } catch (e) {
-            console.error(e);
             input.value = text;
-            alert('Couldn’t send that reply. Check your connection and try again.');
+            if (!onLocked(e)) alert('Couldn’t send that reply. Check your connection and try again.');
         }
     }
 }

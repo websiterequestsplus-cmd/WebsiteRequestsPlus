@@ -13,10 +13,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=7">
+    <link rel="stylesheet" href="styles.css?v=8">
     <script>document.documentElement.classList.add('js');</script>
-    <script src="site-config.js?v=7"></script>
-    <script src="firebase-config.js?v=7"></script>
+    <script src="site-config.js?v=8"></script>
+    <script src="firebase-config.js?v=8"></script>
 </head>
 <body id="top">
 
@@ -99,7 +99,7 @@
                         </li>
                         <li class="flex items-center gap-2">
                             <svg class="h-4 w-4 flex-none text-brand" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4.5 4.5L19 7.5"/></svg>
-                            <span class="discord-only">Discord or email</span><span class="no-discord-only">Quotes by email</span>
+                            <span class="discord-only">Discord or email</span><span class="no-discord-only"><span class="chat-only">Chat with our team</span><span class="no-chat-only">Quotes by email</span></span>
                         </li>
                     </ul>
                 </div>
@@ -210,7 +210,7 @@
                     <li class="scroll-reveal rounded-lg border border-line bg-white p-6">
                         <span class="font-mono text-xs text-brand">Step 01</span>
                         <h3 class="mt-4 font-display text-xl font-semibold text-ink">Send a request</h3>
-                        <p class="mt-2 text-[15px] leading-relaxed text-muted"><span class="discord-only">Fill out the form below or message us on Discord with what you want built.</span><span class="no-discord-only">Fill out the form below or email us with what you want built.</span></p>
+                        <p class="mt-2 text-[15px] leading-relaxed text-muted"><span class="discord-only">Fill out the form below or message us on Discord with what you want built.</span><span class="no-discord-only"><span class="chat-only">Start a chat here on the site and tell us what you want built.</span><span class="no-chat-only">Fill out the form below or email us with what you want built.</span></span></p>
                     </li>
                     <li class="scroll-reveal rounded-lg border border-line bg-white p-6">
                         <span class="font-mono text-xs text-brand">Step 02</span>
@@ -240,7 +240,8 @@
                     <p class="mt-5 max-w-lg text-lg leading-relaxed text-white/70">We don't sell fixed packages. Every website is different, so we price each one after we understand what you need. Contact sales and tell us about your project.</p>
                     <div class="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
                         <a href="#contact" class="btn btn-light px-6">Contact sales</a>
-                        <a href="mailto:websiterequestsplus@gmail.com?subject=Sales%20inquiry" class="btn px-2 text-white/80 underline decoration-white/30 underline-offset-4 hover:text-white hover:decoration-white">Email websiterequestsplus@gmail.com</a>
+                        <a href="chat.html" class="chat-only btn px-2 text-white/80 underline decoration-white/30 underline-offset-4 hover:text-white hover:decoration-white">Start a chat</a>
+                        <a href="mailto:websiterequestsplus@gmail.com?subject=Sales%20inquiry" class="no-chat-only btn px-2 text-white/80 underline decoration-white/30 underline-offset-4 hover:text-white hover:decoration-white">Email websiterequestsplus@gmail.com</a>
                     </div>
                 </div>
 
@@ -276,13 +277,14 @@
                 <div class="lg:col-span-5">
                     <p class="eyebrow">Contact sales</p>
                     <h2 class="mt-4 font-display text-3xl font-semibold leading-tight tracking-tight text-ink md:text-[2.6rem]">Tell us what you want built.</h2>
-                    <p class="mt-5 leading-relaxed text-muted">Send your request and we'll follow up with questions and a quote. <span class="discord-only">Discord is the fastest way to reach us. Email works too, but replies can take longer.</span><span class="no-discord-only">We reply by email.</span><span class="chat-only"> You can also sign in and chat with us.</span></p>
+                    <p class="chat-only mt-5 leading-relaxed text-muted">Start a chat and we'll follow up with questions and a quote. Your conversation is saved, so you can come back to it anytime.</p>
+                    <p class="no-chat-only mt-5 leading-relaxed text-muted">Send your request and we'll follow up with questions and a quote. <span class="discord-only">Discord is the fastest way to reach us. Email works too, but replies can take longer.</span><span class="no-discord-only">We reply by email.</span></p>
 
                     <div class="mt-9 divide-y divide-line border-y border-line">
                         <a href="chat.html" class="chat-only group flex items-center justify-between gap-4 py-5">
                             <div>
                                 <p class="font-semibold text-ink">Chat</p>
-                                <p class="mt-0.5 text-sm text-muted">Sign in and message us. Your chat is saved.</p>
+                                <p class="mt-0.5 text-sm text-muted">Sign in with Google or email and message us. Your chat is saved.</p>
                             </div>
                             <svg class="h-5 w-5 flex-none text-subtle transition-colors group-hover:text-brand" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7m0 0H9m8 0v8"/></svg>
                         </a>
@@ -293,7 +295,7 @@
                             </div>
                             <svg class="h-5 w-5 flex-none text-subtle transition-colors group-hover:text-brand" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7m0 0H9m8 0v8"/></svg>
                         </a>
-                        <a href="mailto:websiterequestsplus@gmail.com?subject=Sales%20inquiry" class="group flex items-center justify-between gap-4 py-5">
+                        <a href="mailto:websiterequestsplus@gmail.com?subject=Sales%20inquiry" class="no-chat-only group flex items-center justify-between gap-4 py-5">
                             <div>
                                 <p class="font-semibold text-ink">Email</p>
                                 <p class="mt-0.5 break-all text-sm text-muted">websiterequestsplus@gmail.com</p>
@@ -315,7 +317,7 @@
                             <p class="discord-only text-sm text-muted">How should we reply?</p>
                         </div>
 
-                        <div class="discord-only mt-5 grid grid-cols-2 gap-1 rounded-md bg-mist p-1" role="group" aria-label="Reply method">
+                        <div id="method-group" class="discord-only mt-5 grid grid-cols-2 gap-1 rounded-md bg-mist p-1" role="group" aria-label="Reply method">
                             <button type="button" id="method-discord" class="method-toggle method-active" aria-pressed="true">
                                 Discord <span class="rounded bg-brand-light px-1.5 py-0.5 font-mono text-[10px] font-medium uppercase tracking-wider text-brand">Fastest</span>
                             </button>
@@ -327,11 +329,11 @@
                         </div>
 
                         <form id="request-form" class="mt-6 grid gap-5 sm:grid-cols-2" novalidate>
-                            <div>
+                            <div id="name-wrap">
                                 <label for="ticket-name" class="field-label">Your name</label>
                                 <input type="text" id="ticket-name" name="name" required autocomplete="name" placeholder="Alex Mercer" class="field">
                             </div>
-                            <div>
+                            <div id="title-wrap">
                                 <label for="ticket-title" class="field-label">Website name</label>
                                 <input type="text" id="ticket-title" name="website_name" required placeholder="My Brand" class="field">
                             </div>
@@ -381,6 +383,10 @@
                     <details class="faq-item">
                         <summary>How long does a project take?</summary>
                         <p class="pb-5 leading-relaxed text-muted">That depends on the size of the site. We'll give you a timeline along with your quote.</p>
+                    </details>
+                    <details class="faq-item chat-only">
+                        <summary>Do I need an account to chat?</summary>
+                        <p class="pb-5 leading-relaxed text-muted">Yes. Sign in with Google or an email and password, so your conversation is saved and we can reply to you right here.</p>
                     </details>
                     <details class="faq-item discord-only">
                         <summary>Do I need Discord?</summary>
@@ -445,7 +451,7 @@
         <span id="toast-text"></span>
     </div>
 
-    <script src="nav.js?v=7"></script>
+    <script src="nav.js?v=8"></script>
     <script>
         // Toast notifications (used by contact.js)
         let toastTimer;
@@ -461,7 +467,7 @@
             }, 4000);
         };
     </script>
-    <script src="animations.js?v=7"></script>
-    <script src="contact.js?v=7"></script>
+    <script src="animations.js?v=8"></script>
+    <script src="contact.js?v=8"></script>
 </body>
 </html>

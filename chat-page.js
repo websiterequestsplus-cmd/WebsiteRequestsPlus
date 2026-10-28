@@ -1,4 +1,4 @@
-import { ready, db, currentUser, watchUser, wireAccountNav, nameOf } from './firebase-init.js?v=7';
+import { ready, db, currentUser, watchUser, wireAccountNav, nameOf } from './firebase-init.js?v=8';
 import {
     collection,
     doc,
@@ -10,9 +10,20 @@ import {
     updateDoc,
     serverTimestamp,
 } from 'https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js';
-import { el, millis, shortTime, longTime, statusChip, renderMessages, wireComposer, setPane, TEAM_NAME, MAX_MESSAGE } from './chat-ui.js?v=7';
+import { el, millis, shortTime, longTime, statusChip, renderMessages, wireComposer, setPane, TEAM_NAME, MAX_MESSAGE } from './chat-ui.js?v=8';
 
 const $ = (id) => document.getElementById(id);
+
+// A quote request handed over from the home page form (contact.js)
+function takeDraft() {
+    try {
+        const raw = sessionStorage.getItem('wr-chat-draft');
+        sessionStorage.removeItem('wr-chat-draft');
+        return raw ? JSON.parse(raw) : null;
+    } catch (e) {
+        return null;
+    }
+}
 const listPane = $('list-pane');
 const threadPane = $('thread-pane');
 
@@ -54,7 +65,14 @@ async function start() {
                 $('loading').classList.add('hidden');
                 $('chat-app').classList.remove('hidden');
                 const wanted = new URLSearchParams(location.search).get('c');
-                if (wanted && chats.some((c) => c.id === wanted)) openChat(wanted);
+                const draft = takeDraft();
+                if (draft) {
+                    // Came from the quote form on the home page
+                    openNew();
+                    $('new-subject').value = draft.subject || '';
+                    $('new-message').value = draft.message || '';
+                    $('new-message').focus();
+                } else if (wanted && chats.some((c) => c.id === wanted)) openChat(wanted);
                 else if (!chats.length) openNew();
                 else if (window.matchMedia('(min-width: 1024px)').matches) openChat(chats[0].id);
                 else setPane(listPane, threadPane, 'list');

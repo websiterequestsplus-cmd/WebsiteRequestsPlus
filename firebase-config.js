@@ -34,7 +34,7 @@ window.SIGN_IN_PROVIDERS = {
         emulators = false;
     }
     window.FIREBASE_EMULATORS = emulators;
-    if (emulators && !window.FIREBASE_CONFIG.apiKey) {
+    if (emulators) {
         window.FIREBASE_CONFIG = { apiKey: 'demo-key', authDomain: 'demo-wrplus.firebaseapp.com', projectId: 'demo-wrplus', appId: 'demo' };
         window.SIGN_IN_PROVIDERS = { google: true, microsoft: true, email: true };
     }

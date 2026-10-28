@@ -14,12 +14,30 @@
 
     // Discord can be switched off site-wide in site-config.js
     const DISCORD_ON = !window.SITE || window.SITE.discord !== false;
-    const DEFAULT_METHOD = DISCORD_ON ? 'discord' : 'email';
+    // Once chat is set up (firebase-config.js adds .chat-on), the form starts a chat instead
+    const CHAT_ON = document.documentElement.classList.contains('chat-on');
+    const DEFAULT_METHOD = CHAT_ON ? 'chat' : DISCORD_ON ? 'discord' : 'email';
 
     let contactMethod = DEFAULT_METHOD;
 
+    if (CHAT_ON) {
+        // The chat account already knows the name and email
+        document.getElementById('method-group').classList.add('hidden');
+        document.getElementById('name-wrap').classList.add('hidden');
+        document.getElementById('title-wrap').classList.add('sm:col-span-2');
+        document.getElementById('ticket-name').required = false;
+    }
+
     function setContactMethod(method) {
         contactMethod = method;
+
+        if (method === 'chat') {
+            emailFieldWrap.classList.add('hidden');
+            emailNotice.classList.add('hidden');
+            submitBtn.textContent = 'Continue to chat';
+            submitHint.textContent = 'Sign in with Google or email, then send it. We reply right in the chat.';
+            return;
+        }
 
         const isDiscord = method === 'discord';
         methodDiscord.classList.toggle('method-active', isDiscord);
@@ -79,10 +97,35 @@
         };
     }
 
+    // Hands the request to chat.html, which opens a new chat already filled in
+    function startChat(data) {
+        const select = document.getElementById('ticket-category');
+        const typeLabel = select.options[select.selectedIndex].textContent.trim();
+        const draft = {
+            subject: `${data.websiteName} (${typeLabel})`.slice(0, 120),
+            message: `${data.description}\n\nWebsite type: ${typeLabel}`.slice(0, 2000),
+        };
+        try {
+            sessionStorage.setItem('wr-chat-draft', JSON.stringify(draft));
+        } catch (e) {
+            // Storage blocked: they'll type it into the chat instead
+        }
+        window.location.href = 'chat.html';
+    }
+
     requestForm.addEventListener('submit', async (event) => {
         event.preventDefault();
 
         const data = collectFormData();
+
+        if (contactMethod === 'chat') {
+            if (!data.websiteName || !data.description) {
+                window.showToast('Please fill in your website name and what you want.');
+                return;
+            }
+            startChat(data);
+            return;
+        }
 
         if (!data.name || !data.websiteName || !data.description) {
             window.showToast('Please fill in your name, website name, and description.');

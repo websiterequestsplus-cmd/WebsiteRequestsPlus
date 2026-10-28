@@ -1,4 +1,4 @@
-import { ready, auth, providers, currentUser, watchUser, wireAccountNav, nameOf } from './firebase-init.js?v=7';
+import { ready, auth, providers, currentUser, watchUser, wireAccountNav, nameOf } from './firebase-init.js?v=8';
 import {
     GoogleAuthProvider,
     OAuthProvider,
