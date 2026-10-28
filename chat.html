@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat | Website Requests +</title>
+    <meta name="description" content="Chat with Website Requests + about your website project.">
+    <meta name="theme-color" content="#171E2D">
+    <meta name="robots" content="noindex">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=7">
+    <script>document.documentElement.classList.add('js');</script>
+    <script src="site-config.js?v=7"></script>
+    <script src="firebase-config.js?v=7"></script>
+</head>
+<body id="top" class="bg-mist">
+
+    <!-- Navigation -->
+    <nav id="site-nav" class="sticky top-0 z-40 border-b border-line bg-white">
+        <div class="wrap">
+            <div class="flex h-16 items-center justify-between md:h-[72px]">
+                <a href="index.html" class="flex items-center gap-2.5" aria-label="Website Requests + home">
+                    <img src="logo-mark.png" alt="" width="58" height="30" class="h-[30px] w-auto">
+                    <span class="font-display text-[17px] font-semibold tracking-tight text-ink">Website Requests <span class="text-brand">+</span></span>
+                </a>
+
+                <div class="hidden items-center gap-7 lg:flex">
+                    <a href="index.html#services" class="nav-link">Services</a>
+                    <a href="showcase.html" class="nav-link">What we can do</a>
+                    <a href="index.html#pricing" class="nav-link">Pricing</a>
+                    <a href="chat.html" class="nav-link text-ink" aria-current="page">Chat</a>
+                    <a href="inbox.html" class="nav-link hidden" data-admin-only>Inbox</a>
+                </div>
+
+                <div class="hidden items-center gap-4 lg:flex">
+                    <span class="hidden max-w-[220px] truncate text-sm text-muted" data-signed-in data-account-email></span>
+                    <button type="button" class="btn btn-outline hidden py-2" data-signed-in data-sign-out>Sign out</button>
+                </div>
+
+                <button id="mobile-menu-button" type="button" class="-mr-2 p-2 text-ink lg:hidden" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                        <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M4 12h16M4 17h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden border-t border-line bg-white lg:hidden">
+            <div class="wrap flex flex-col py-3">
+                <p class="truncate py-2 text-sm text-muted" data-account-email></p>
+                <a href="index.html" class="border-b border-line py-3.5 text-base font-medium text-ink">Home</a>
+                <a href="showcase.html" class="border-b border-line py-3.5 text-base font-medium text-ink">What we can do</a>
+                <a href="chat.html" class="border-b border-line py-3.5 text-base font-medium text-brand" aria-current="page">Chat</a>
+                <a href="inbox.html" class="hidden border-b border-line py-3.5 text-base font-medium text-ink" data-admin-only>Inbox</a>
+                <button type="button" class="hidden py-3.5 text-left text-base font-medium text-ink" data-signed-in data-sign-out>Sign out</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="wrap h-[calc(100svh-64px)] py-3 md:h-[calc(100svh-72px)] md:py-6">
+
+        <!-- Shown until Firebase is set up -->
+        <div id="setup-notice" class="mx-auto mt-10 hidden max-w-md rounded-xl border border-line bg-white p-6 sm:p-8">
+            <p class="eyebrow">Chat</p>
+            <h1 class="mt-3 font-display text-2xl font-semibold tracking-tight text-ink">Chat is coming soon.</h1>
+            <p class="mt-3 leading-relaxed text-muted">For now, email us and we'll get back to you.</p>
+            <a href="mailto:websiterequestsplus@gmail.com" class="btn btn-primary mt-6 w-full">Email websiterequestsplus@gmail.com</a>
+        </div>
+
+        <p id="loading" class="py-16 text-center text-sm text-muted">Loading your chats…</p>
+
+        <div id="chat-app" class="hidden h-full">
+        <div class="h-full min-h-0 overflow-hidden rounded-xl border border-line bg-white lg:grid lg:grid-cols-[320px_1fr]">
+
+            <!-- Conversation list -->
+            <aside id="list-pane" class="flex h-full min-h-0 flex-col border-line lg:flex lg:border-r">
+                <div class="flex items-center justify-between gap-3 border-b border-line px-4 py-3.5">
+                    <h1 class="font-display text-lg font-semibold text-ink">Your chats</h1>
+                    <button type="button" id="new-chat-btn" class="btn btn-primary px-3.5 py-2">New chat</button>
+                </div>
+                <ul id="chat-list" class="min-h-0 flex-1 overflow-y-auto" aria-label="Your chats"></ul>
+            </aside>
+
+            <!-- Thread / new chat -->
+            <section id="thread-pane" class="hidden h-full min-h-0 flex-col lg:flex">
+
+                <div id="new-view" class="flex min-h-0 flex-1 flex-col overflow-y-auto">
+                    <div class="flex items-center gap-3 border-b border-line px-4 py-3.5 lg:hidden">
+                        <button type="button" class="-ml-1 rounded p-1 text-ink" data-back aria-label="Back to your chats">
+                            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 18l-6-6 6-6"/></svg>
+                        </button>
+                        <p class="font-display text-lg font-semibold text-ink">New chat</p>
+                    </div>
+                    <form id="new-form" class="mx-auto w-full max-w-lg p-5 sm:p-8" novalidate>
+                        <p class="eyebrow">New chat</p>
+                        <h2 class="mt-3 font-display text-2xl font-semibold tracking-tight text-ink">What can we help with?</h2>
+                        <p class="mt-2 text-[15px] leading-relaxed text-muted">Ask about a website, reply to one of our emails, or get a quote. We'll answer right here.</p>
+                        <label for="new-subject" class="field-label mt-6">Subject</label>
+                        <input id="new-subject" type="text" maxlength="120" class="field" placeholder="e.g. Website for my bakery">
+                        <label for="new-message" class="field-label mt-4">Message</label>
+                        <textarea id="new-message" rows="5" maxlength="2000" class="field resize-y" placeholder="Tell us what you need, or paste the email you're replying to."></textarea>
+                        <p id="new-error" class="mt-3 hidden text-sm text-red-700" role="alert"></p>
+                        <button type="submit" id="new-submit" class="btn btn-primary mt-5 w-full sm:w-auto">Start chat</button>
+                    </form>
+                </div>
+
+                <div id="thread-view" class="hidden min-h-0 flex-1 flex-col">
+                    <div class="flex items-center gap-3 border-b border-line px-4 py-3">
+                        <button type="button" class="-ml-1 rounded p-1 text-ink lg:hidden" data-back aria-label="Back to your chats">
+                            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 18l-6-6 6-6"/></svg>
+                        </button>
+                        <div class="min-w-0 flex-1">
+                            <p id="thread-subject" class="truncate font-display text-lg font-semibold text-ink"></p>
+                            <p id="thread-started" class="text-xs text-muted"></p>
+                        </div>
+                        <span id="thread-status"></span>
+                    </div>
+
+                    <div id="messages" class="min-h-0 flex-1 space-y-3 overflow-y-auto bg-mist/60 px-4 py-5" aria-live="polite"></div>
+
+                    <form id="composer" class="flex items-end gap-2 border-t border-line p-3" novalidate>
+                        <label for="composer-input" class="sr-only">Message</label>
+                        <textarea id="composer-input" rows="1" maxlength="2000" class="field max-h-40 min-h-[44px] flex-1 resize-none" placeholder="Write a message…"></textarea>
+                        <button type="submit" id="composer-send" class="btn btn-primary h-11 px-4">Send</button>
+                    </form>
+
+                    <div id="closed-note" class="hidden border-t border-line bg-mist px-4 py-4 text-center">
+                        <p class="text-sm text-muted">This chat was closed by our team.</p>
+                        <button type="button" class="btn btn-outline mt-3 py-2" data-start-new>Start a new chat</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+        </div>
+    </main>
+
+    <script src="nav.js?v=7"></script>
+    <script type="module" src="chat-page.js?v=7"></script>
+</body>
+</html>
