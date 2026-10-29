@@ -1,4 +1,4 @@
-import { ready, db, currentUser, watchUser, wireAccountNav, isAdmin } from './firebase-init.js?v=8';
+import { ready, db, currentUser, watchUser, wireAccountNav, isAdmin } from './firebase-init.js?v=11';
 import {
     collection,
     doc,
@@ -13,7 +13,7 @@ import {
     getDocs,
     serverTimestamp,
 } from 'https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js';
-import { el, millis, shortTime, longTime, statusChip, renderMessages, wireComposer, setPane, TEAM_NAME, MAX_MESSAGE } from './chat-ui.js?v=8';
+import { el, millis, shortTime, longTime, statusChip, renderMessages, wireComposer, setPane, TEAM_NAME, MAX_MESSAGE } from './chat-ui.js?v=11';
 
 const $ = (id) => document.getElementById(id);
 const listPane = $('list-pane');
@@ -116,6 +116,14 @@ async function start() {
         return false;
     }
 
+    // Any other listener failure: say so loudly instead of showing a frozen list
+    function showLiveError(error) {
+        if (onLocked(error)) return;
+        const bar = $('live-error');
+        bar.classList.remove('hidden');
+        bar.classList.add('flex');
+    }
+
     function listen() {
         firstLoad = true;
         const chatsQuery = query(collection(db, 'chats'), orderBy('updatedAt', 'desc'), limit(500));
@@ -139,9 +147,12 @@ async function start() {
                 }
             },
             (error) => {
-                if (!onLocked(error)) {
+                if (firstLoad && error.code !== 'permission-denied') {
+                    console.error(error);
                     $('loading').textContent = 'Couldn’t load the inbox. Check the security rules are published, then refresh.';
+                    return;
                 }
+                showLiveError(error);
             }
         );
     }
@@ -244,7 +255,7 @@ async function start() {
         stopMessages = onSnapshot(
             query(collection(db, 'chats', id, 'messages'), orderBy('createdAt')),
             (snap) => renderMessages(box, snap.docs.map((d) => d.data()), 'admin'),
-            (error) => onLocked(error)
+            (error) => showLiveError(error)
         );
         markRead();
         history.replaceState(null, '', `inbox.html?c=${encodeURIComponent(id)}`);

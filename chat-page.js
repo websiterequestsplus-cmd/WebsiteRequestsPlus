@@ -1,4 +1,4 @@
-import { ready, db, currentUser, watchUser, wireAccountNav, nameOf } from './firebase-init.js?v=8';
+import { ready, db, currentUser, watchUser, wireAccountNav, nameOf } from './firebase-init.js?v=11';
 import {
     collection,
     doc,
@@ -10,7 +10,7 @@ import {
     updateDoc,
     serverTimestamp,
 } from 'https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js';
-import { el, millis, shortTime, longTime, statusChip, renderMessages, wireComposer, setPane, TEAM_NAME, MAX_MESSAGE } from './chat-ui.js?v=8';
+import { el, millis, shortTime, longTime, statusChip, renderMessages, wireComposer, setPane, TEAM_NAME, MAX_MESSAGE } from './chat-ui.js?v=11';
 
 const $ = (id) => document.getElementById(id);
 
@@ -80,9 +80,36 @@ async function start() {
         },
         (error) => {
             console.error(error);
-            $('loading').textContent = 'Couldn’t load your chats. Refresh the page to try again.';
+            if (firstLoad) $('loading').textContent = 'Couldn’t load your chats. Refresh the page to try again.';
+            else showLiveError();
         }
     );
+
+    // Emails the team about a new chat via the Apps Script in setup/chat-alerts.gs.
+    // Only the chat ID + sign-in token go out; the script reads the real chat from
+    // Firebase itself. Fire-and-forget: the chat is already saved either way.
+    async function notifyTeam(chatId) {
+        const url = window.CHAT_ALERT_URL;
+        if (!url) return;
+        try {
+            const token = await user.getIdToken();
+            await fetch(url, {
+                method: 'POST',
+                mode: 'no-cors',
+                keepalive: true,
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                body: JSON.stringify({ chatId, token }),
+            });
+        } catch (e) {
+            console.warn('Chat alert not sent', e);
+        }
+    }
+
+    // If live updates ever stop, say so instead of showing a frozen chat
+    function showLiveError() {
+        $('live-error').classList.remove('hidden');
+        $('live-error').classList.add('flex');
+    }
 
     function renderList() {
         const list = $('chat-list');
@@ -154,7 +181,10 @@ async function start() {
         stopMessages = onSnapshot(
             messagesQuery,
             (snap) => renderMessages(box, snap.docs.map((d) => d.data()), 'user'),
-            (error) => console.error(error)
+            (error) => {
+                console.error(error);
+                showLiveError();
+            }
         );
         markRead();
         history.replaceState(null, '', `chat.html?c=${encodeURIComponent(id)}`);
@@ -219,6 +249,7 @@ async function start() {
                 createdAt: serverTimestamp(),
             });
             await batch.commit();
+            notifyTeam(chatRef.id);
             $('new-subject').value = '';
             $('new-message').value = '';
             openChat(chatRef.id);

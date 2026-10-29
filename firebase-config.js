@@ -22,6 +22,10 @@ window.SIGN_IN_PROVIDERS = {
     email: true,
 };
 
+// Email alert when someone starts a new chat: paste the Web app URL of the
+// Google Apps Script (setup/chat-alerts.gs). Leave empty for no alerts.
+window.CHAT_ALERT_URL = 'https://script.google.com/macros/s/AKfycbzCwL_iK3f5CIvwcNtUTdQDZYvgSnyAKGRPfui6JRbp8PmC3wrCvk8FpVVxmdlETdk-Xw/exec';
+
 // ----- Don't edit below this line -----
 (function () {
     // Local testing only: open a page on localhost with ?emulators to use the Firebase emulators
@@ -37,6 +41,7 @@ window.SIGN_IN_PROVIDERS = {
     if (emulators) {
         window.FIREBASE_CONFIG = { apiKey: 'demo-key', authDomain: 'demo-wrplus.firebaseapp.com', projectId: 'demo-wrplus', appId: 'demo' };
         window.SIGN_IN_PROVIDERS = { google: true, microsoft: true, email: true };
+        window.CHAT_ALERT_URL = ''; // never email from local tests
     }
     if (window.FIREBASE_CONFIG.apiKey) document.documentElement.classList.add('chat-on');
 })();
