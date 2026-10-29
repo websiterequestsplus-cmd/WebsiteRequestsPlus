@@ -20,6 +20,24 @@
         });
     }
 
+    // Floating chat button steps aside while a section that already offers chat is on screen
+    const fab = document.querySelector('[data-chat-fab]');
+    const zones = document.querySelectorAll('[data-hide-fab]');
+    if (fab && zones.length && 'IntersectionObserver' in window) {
+        const showing = new Set();
+        const io = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => (entry.isIntersecting ? showing.add(entry.target) : showing.delete(entry.target)));
+                const hide = showing.size > 0;
+                fab.style.opacity = hide ? '0' : '';
+                fab.style.pointerEvents = hide ? 'none' : '';
+                fab.style.transform = hide ? 'translateY(12px)' : '';
+            },
+            { threshold: 0.15 }
+        );
+        zones.forEach((zone) => io.observe(zone));
+    }
+
     // Nav border once the page scrolls
     const nav = document.getElementById('site-nav');
     if (nav) {

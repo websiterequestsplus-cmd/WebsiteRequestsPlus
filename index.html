@@ -13,10 +13,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=11">
+    <link rel="stylesheet" href="styles.css?v=14">
     <script>document.documentElement.classList.add('js');</script>
-    <script src="site-config.js?v=11"></script>
-    <script src="firebase-config.js?v=11"></script>
+    <script src="site-config.js?v=14"></script>
+    <script src="firebase-config.js?v=14"></script>
 </head>
 <body id="top">
 
@@ -81,13 +81,18 @@
                         We design and build custom websites for businesses, creators, and communities. Tell us what you need — we'll talk it through and send a quote built around your project.
                     </p>
                     <div class="mt-9 flex flex-col gap-3 sm:flex-row">
-                        <a href="#contact" class="btn btn-primary px-6">
+                        <a href="chat.html" class="chat-only btn btn-primary px-6">
+                            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 18.5 4 20l1.2-3.6A7.5 7.5 0 1 1 7.5 18.5Z"/><path stroke-linecap="round" d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01" stroke-width="2.4"/></svg>
+                            Chat with sales
+                        </a>
+                        <a href="#contact" class="no-chat-only btn btn-primary px-6">
                             Contact sales
                             <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6"/></svg>
                         </a>
                         <a href="showcase.html" class="btn btn-outline px-6">See what we can do</a>
                         <a href="https://discord.gg/3CdYWtE7K3" target="_blank" rel="noopener" class="discord-only btn btn-outline px-6">Join our Discord</a>
                     </div>
+                    <p class="chat-only mt-4 text-sm text-muted">Prefer email? <a href="mailto:websiterequestsplus@gmail.com?subject=Sales%20inquiry" class="font-medium text-brand hover:underline">websiterequestsplus@gmail.com</a></p>
                     <ul class="mt-10 flex flex-col gap-3 text-sm text-muted sm:flex-row sm:flex-wrap sm:gap-x-7">
                         <li class="flex items-center gap-2">
                             <svg class="h-4 w-4 flex-none text-brand" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4.5 4.5L19 7.5"/></svg>
@@ -239,9 +244,9 @@
                     <h2 class="mt-4 font-display text-3xl font-semibold leading-tight tracking-tight md:text-[2.6rem]">Every project gets a custom quote.</h2>
                     <p class="mt-5 max-w-lg text-lg leading-relaxed text-white/70">We don't sell fixed packages. Every website is different, so we price each one after we understand what you need. Contact sales and tell us about your project.</p>
                     <div class="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
-                        <a href="#contact" class="btn btn-light px-6">Contact sales</a>
-                        <a href="chat.html" class="chat-only btn px-2 text-white/80 underline decoration-white/30 underline-offset-4 hover:text-white hover:decoration-white">Start a chat</a>
-                        <a href="mailto:websiterequestsplus@gmail.com?subject=Sales%20inquiry" class="no-chat-only btn px-2 text-white/80 underline decoration-white/30 underline-offset-4 hover:text-white hover:decoration-white">Email websiterequestsplus@gmail.com</a>
+                        <a href="chat.html" class="chat-only btn btn-light px-6">Chat with sales</a>
+                        <a href="#contact" class="no-chat-only btn btn-light px-6">Contact sales</a>
+                        <a href="mailto:websiterequestsplus@gmail.com?subject=Sales%20inquiry" class="btn px-2 text-white/80 underline decoration-white/30 underline-offset-4 hover:text-white hover:decoration-white">Email websiterequestsplus@gmail.com</a>
                     </div>
                 </div>
 
@@ -272,22 +277,25 @@
         </section>
 
         <!-- Contact sales -->
-        <section id="contact" class="py-20 md:py-28">
+        <section id="contact" class="py-20 md:py-28" data-hide-fab>
             <div class="wrap grid gap-12 lg:grid-cols-12 lg:gap-16">
                 <div class="lg:col-span-5">
                     <p class="eyebrow">Contact sales</p>
                     <h2 class="mt-4 font-display text-3xl font-semibold leading-tight tracking-tight text-ink md:text-[2.6rem]">Tell us what you want built.</h2>
-                    <p class="chat-only mt-5 leading-relaxed text-muted">Start a chat and we'll follow up with questions and a quote. Your conversation is saved, so you can come back to it anytime.</p>
+                    <p class="chat-only mt-5 leading-relaxed text-muted">Chat with us and we'll follow up with questions and a quote. Your conversation is saved, so you can come back to it anytime. Prefer email? That works too.</p>
                     <p class="no-chat-only mt-5 leading-relaxed text-muted">Send your request and we'll follow up with questions and a quote. <span class="discord-only">Discord is the fastest way to reach us. Email works too, but replies can take longer.</span><span class="no-discord-only">We reply by email.</span></p>
 
-                    <div class="mt-9 divide-y divide-line border-y border-line">
-                        <a href="chat.html" class="chat-only group flex items-center justify-between gap-4 py-5">
-                            <div>
-                                <p class="font-semibold text-ink">Chat</p>
-                                <p class="mt-0.5 text-sm text-muted">Sign in with Google or email and message us. Your chat is saved.</p>
-                            </div>
-                            <svg class="h-5 w-5 flex-none text-subtle transition-colors group-hover:text-brand" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7m0 0H9m8 0v8"/></svg>
-                        </a>
+                    <a href="chat.html" class="chat-only group mt-9 flex items-center gap-4 rounded-xl bg-brand p-5 text-white transition-colors hover:bg-brand-dark">
+                        <span class="flex h-11 w-11 flex-none items-center justify-center rounded-full bg-white/15"><svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 18.5 4 20l1.2-3.6A7.5 7.5 0 1 1 7.5 18.5Z"/><path stroke-linecap="round" d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01" stroke-width="2.4"/></svg></span>
+                        <span class="min-w-0 flex-1">
+                            <span class="block font-display text-lg font-semibold">Chat with us</span>
+                            <span class="mt-0.5 block text-sm text-white/80">The best way to reach us. Sign in with Google or email.</span>
+                        </span>
+                        <svg class="h-5 w-5 flex-none transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6"/></svg>
+                    </a>
+                    <p class="chat-only mt-6 font-mono text-xs uppercase tracking-[0.14em] text-subtle">Or</p>
+
+                    <div class="mt-6 divide-y divide-line border-y border-line">
                         <a href="https://discord.gg/3CdYWtE7K3" target="_blank" rel="noopener" class="discord-only group flex items-center justify-between gap-4 py-5">
                             <div>
                                 <p class="font-semibold text-ink">Discord</p>
@@ -295,9 +303,9 @@
                             </div>
                             <svg class="h-5 w-5 flex-none text-subtle transition-colors group-hover:text-brand" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7m0 0H9m8 0v8"/></svg>
                         </a>
-                        <a href="mailto:websiterequestsplus@gmail.com?subject=Sales%20inquiry" class="no-chat-only group flex items-center justify-between gap-4 py-5">
+                        <a href="mailto:websiterequestsplus@gmail.com?subject=Sales%20inquiry" class="group flex items-center justify-between gap-4 py-5">
                             <div>
-                                <p class="font-semibold text-ink">Email</p>
+                                <p class="font-semibold text-ink">Email us</p>
                                 <p class="mt-0.5 break-all text-sm text-muted">websiterequestsplus@gmail.com</p>
                             </div>
                             <svg class="h-5 w-5 flex-none text-subtle transition-colors group-hover:text-brand" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7m0 0H9m8 0v8"/></svg>
@@ -360,7 +368,10 @@
                             </div>
                             <div class="flex flex-col gap-4 sm:col-span-2 sm:flex-row sm:items-center sm:justify-between">
                                 <p id="submit-hint" class="text-sm leading-relaxed text-muted sm:max-w-xs">Your details are copied, then Discord opens so you can paste them.</p>
-                                <button type="submit" id="request-submit-btn" class="btn btn-primary w-full flex-none whitespace-nowrap px-6 sm:w-auto">Send via Discord</button>
+                                <div class="flex flex-col items-stretch gap-2 sm:items-end">
+                                    <button type="submit" id="request-submit-btn" class="btn btn-primary w-full flex-none whitespace-nowrap px-6 sm:w-auto">Send via Discord</button>
+                                    <button type="button" id="email-instead" class="chat-only text-center text-sm font-medium text-brand hover:underline sm:text-right">Or send it by email</button>
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -383,6 +394,10 @@
                     <details class="faq-item">
                         <summary>How long does a project take?</summary>
                         <p class="pb-5 leading-relaxed text-muted">That depends on the size of the site. We'll give you a timeline along with your quote.</p>
+                    </details>
+                    <details class="faq-item chat-only">
+                        <summary>Can I email you instead?</summary>
+                        <p class="pb-5 leading-relaxed text-muted">Yes. Email <a href="mailto:websiterequestsplus@gmail.com" class="font-medium text-brand hover:underline">websiterequestsplus@gmail.com</a> anytime. Chat is the quickest way to reach us, but email works too.</p>
                     </details>
                     <details class="faq-item chat-only">
                         <summary>Do I need an account to chat?</summary>
@@ -445,13 +460,19 @@
         </div>
     </footer>
 
+    <!-- Floating chat button (shows once chat is set up) -->
+    <a href="chat.html" class="chat-only fixed bottom-5 right-5 z-40 inline-flex items-center gap-2 rounded-full bg-brand p-3.5 text-sm font-semibold text-white shadow-[0_10px_30px_-10px_rgba(0,85,248,0.6)] transition-[opacity,transform,background-color] duration-300 hover:bg-brand-dark sm:py-3 sm:pl-4 sm:pr-5" aria-label="Chat with us" data-chat-fab>
+        <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 18.5 4 20l1.2-3.6A7.5 7.5 0 1 1 7.5 18.5Z"/><path stroke-linecap="round" d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01" stroke-width="2.4"/></svg>
+        <span class="hidden sm:inline">Chat with us</span>
+    </a>
+
     <!-- Toast -->
     <div id="toast-notif" role="status" aria-live="polite" class="pointer-events-none fixed bottom-5 left-4 right-4 z-50 flex translate-y-12 items-center gap-2.5 rounded-lg bg-ink px-4 py-3 text-sm font-medium text-white opacity-0 shadow-lg transition duration-300 sm:left-auto sm:right-6 sm:max-w-sm">
         <span class="h-1.5 w-1.5 flex-none rounded-full bg-brand-sky"></span>
         <span id="toast-text"></span>
     </div>
 
-    <script src="nav.js?v=11"></script>
+    <script src="nav.js?v=14"></script>
     <script>
         // Toast notifications (used by contact.js)
         let toastTimer;
@@ -467,7 +488,7 @@
             }, 4000);
         };
     </script>
-    <script src="animations.js?v=11"></script>
-    <script src="contact.js?v=11"></script>
+    <script src="animations.js?v=14"></script>
+    <script src="contact.js?v=14"></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-import { ready, db, currentUser, watchUser, wireAccountNav, nameOf } from './firebase-init.js?v=11';
+import { ready, db, currentUser, watchUser, wireAccountNav, nameOf, isAdmin } from './firebase-init.js?v=14';
 import {
     collection,
     doc,
@@ -10,7 +10,7 @@ import {
     updateDoc,
     serverTimestamp,
 } from 'https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js';
-import { el, millis, shortTime, longTime, statusChip, renderMessages, wireComposer, setPane, TEAM_NAME, MAX_MESSAGE } from './chat-ui.js?v=11';
+import { el, millis, shortTime, longTime, statusChip, renderMessages, wireComposer, setPane, TEAM_NAME, MAX_MESSAGE } from './chat-ui.js?v=14';
 
 const $ = (id) => document.getElementById(id);
 
@@ -38,6 +38,11 @@ async function start() {
     const user = await currentUser();
     if (!user) {
         window.location.href = 'account.html?next=chat.html';
+        return;
+    }
+    // The official account's chats are the customers' chats: those live in the Inbox
+    if (isAdmin(user) && new URLSearchParams(location.search).get('view') !== 'customer') {
+        window.location.replace('inbox.html');
         return;
     }
     wireAccountNav(user);
@@ -85,9 +90,10 @@ async function start() {
         }
     );
 
-    // Emails the team about a new chat via the Apps Script in setup/chat-alerts.gs.
+    // Emails the team about a new chat or message via the Apps Script in setup/chat-alerts.gs.
     // Only the chat ID + sign-in token go out; the script reads the real chat from
-    // Firebase itself. Fire-and-forget: the chat is already saved either way.
+    // Firebase itself and limits it to one email per chat every 10 minutes.
+    // Fire-and-forget: the message is already saved either way.
     async function notifyTeam(chatId) {
         const url = window.CHAT_ALERT_URL;
         if (!url) return;
@@ -293,6 +299,7 @@ async function start() {
             });
             $('messages').dataset.fresh = '1';
             await batch.commit();
+            notifyTeam(chat.id);
         } catch (e) {
             console.error(e);
             input.value = text;

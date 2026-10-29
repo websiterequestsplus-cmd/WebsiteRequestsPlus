@@ -1,4 +1,4 @@
-import { ready, db, currentUser, watchUser, wireAccountNav, isAdmin } from './firebase-init.js?v=11';
+import { ready, db, currentUser, watchUser, wireAccountNav, isAdmin } from './firebase-init.js?v=14';
 import {
     collection,
     doc,
@@ -13,7 +13,7 @@ import {
     getDocs,
     serverTimestamp,
 } from 'https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js';
-import { el, millis, shortTime, longTime, statusChip, renderMessages, wireComposer, setPane, TEAM_NAME, MAX_MESSAGE } from './chat-ui.js?v=11';
+import { el, millis, shortTime, longTime, statusChip, renderMessages, wireComposer, setPane, TEAM_NAME, MAX_MESSAGE } from './chat-ui.js?v=14';
 
 const $ = (id) => document.getElementById(id);
 const listPane = $('list-pane');

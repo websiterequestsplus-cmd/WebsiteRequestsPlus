@@ -61,7 +61,7 @@
         return [
             'Quote Request — Website Requests +',
             '',
-            `Name: ${data.name}`,
+            `Name: ${data.name || 'Not provided'}`,
             `Reply Email: ${data.replyEmail || 'Not provided'}`,
             `Website Type: ${data.type}`,
             `Website Name: ${data.websiteName}`,
@@ -111,6 +111,19 @@
             // Storage blocked: they'll type it into the chat instead
         }
         window.location.href = 'chat.html';
+    }
+
+    // Email as the second option: opens their email app with the request filled in
+    const emailInstead = document.getElementById('email-instead');
+    if (emailInstead) {
+        emailInstead.addEventListener('click', () => {
+            const data = collectFormData();
+            if (!data.websiteName || !data.description) {
+                window.showToast('Please fill in your website name and what you want.');
+                return;
+            }
+            openMailClient(data);
+        });
     }
 
     requestForm.addEventListener('submit', async (event) => {

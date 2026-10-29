@@ -13,10 +13,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=11">
+    <link rel="stylesheet" href="styles.css?v=14">
     <script>document.documentElement.classList.add('js');</script>
-    <script src="site-config.js?v=11"></script>
-    <script src="firebase-config.js?v=11"></script>
+    <script src="site-config.js?v=14"></script>
+    <script src="firebase-config.js?v=14"></script>
 </head>
 <body id="top">
 
@@ -515,7 +515,7 @@
         </section>
 
         <!-- 07 Shape reveal + call to action -->
-        <section id="reveal" class="scene h-[220vh] bg-ink" data-scene>
+        <section id="reveal" class="scene h-[220vh] bg-ink" data-scene data-hide-fab>
             <div class="scene-sticky">
                 <div class="circle-blob" aria-hidden="true" data-circle-blob></div>
                 <div class="absolute inset-0 flex flex-col items-center justify-center px-4 text-center text-white" data-circle-intro>
@@ -526,7 +526,8 @@
                     <h2 class="font-display text-[clamp(2.4rem,6vw,5rem)] font-semibold leading-[1.02] tracking-tight">Want this on your site?</h2>
                     <p class="mt-5 max-w-xl text-lg leading-relaxed text-white/80">Tell us what you want built. Every project gets a custom quote.</p>
                     <div class="mt-9 flex w-full max-w-xs flex-col gap-3 sm:w-auto sm:max-w-none sm:flex-row">
-                        <a href="index.html#contact" class="btn btn-light px-7">Contact sales</a>
+                        <a href="chat.html" class="chat-only btn btn-light px-7">Chat with sales</a>
+                        <a href="index.html#contact" class="no-chat-only btn btn-light px-7">Contact sales</a>
                         <a href="index.html#services" class="btn border border-white/40 px-7 text-white hover:border-white">See our services</a>
                     </div>
                 </div>
@@ -574,8 +575,13 @@
         </div>
     </footer>
 
-    <script src="nav.js?v=11"></script>
-    <script src="animations.js?v=11"></script>
-    <script src="showcase.js?v=11"></script>
+    <!-- Floating chat button (shows once chat is set up) -->
+    <a href="chat.html" class="chat-only fixed bottom-5 right-5 z-40 inline-flex items-center gap-2 rounded-full bg-brand p-3.5 text-sm font-semibold text-white shadow-[0_10px_30px_-10px_rgba(0,85,248,0.6)] transition-[opacity,transform,background-color] duration-300 hover:bg-brand-dark sm:py-3 sm:pl-4 sm:pr-5" aria-label="Chat with us" data-chat-fab>
+        <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 18.5 4 20l1.2-3.6A7.5 7.5 0 1 1 7.5 18.5Z"/><path stroke-linecap="round" d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01" stroke-width="2.4"/></svg>
+        <span class="hidden sm:inline">Chat with us</span>
+    </a>
+    <script src="nav.js?v=14"></script>
+    <script src="animations.js?v=14"></script>
+    <script src="showcase.js?v=14"></script>
 </body>
 </html>
